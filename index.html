@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Something For Manya</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Music -->
+
+<audio id="backgroundMusic" loop>
+    <source src="music/birthday.mp3" type="audio/mpeg">
+</audio>
+
+<button
+    id="musicButton"
+    class="music-button"
+    onclick="toggleMusic()"
+    aria-label="Toggle background music"
+>
+    ♪
+</button>
+
+    <!-- Floating Hearts -->
+    <div id="hearts-container"></div>
+
+    <!-- Particle Transition -->
+    <div id="particle-transition"></div>
+
+
+    <!-- =========================
+         MAIN WEBSITE
+    ========================== -->
+
+    <main id="website">
+
+        <!-- SLIDE 1 -->
+        <section class="slide active" id="slide1">
+
+            <div class="slide-content">
+
+                <!-- Left Side -->
+                <div class="intro-text">
+
+                    <p class="small-heading">
+                        A little something for
+                    </p>
+
+                    <h1 class="special-text">
+                        Someone Very
+                        <span>Special</span> 
+                    </h1>
+
+                    <div class="divider"></div>
+
+                    <h2>
+                        Manya!❤️
+                    </h2>
+
+                    <p class="intro-message">
+                        Today isn't just another date on the calendar.
+                        It's a day worth celebrating because someone
+                        wonderful was born.
+                    </p>
+
+                    <button class="next-btn" onclick="startMusic(); goToSlide(1)">
+                        Continue →
+                    </button>
+
+                </div>
+
+
+                <!-- Right Side Photo -->
+                <div class="hero-photo">
+
+                    <div class="photo-glow"></div>
+
+                    <div class="photo-frame">
+
+                        <img
+                            src="photos/manya1.jpg"
+                            alt="Manya"
+                        >
+
+                    </div>
+
+                    <p class="photo-caption">
+                        a little moment worth remembering
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SLIDE 2 PLACEHOLDER -->
+   <!-- =========================
+     SLIDE 2
+========================== -->
+
+<section class="slide" id="slide2">
+
+    <div class="story-slide">
+
+        <!-- LEFT SIDE -->
+        <div class="story-content">
+
+            <p class="section-label">
+                WHERE IT ALL STARTED
+            </p>
+
+            <h2 class="story-title">
+                It started
+                <span>long before.</span>
+            </h2>
+
+
+            <!-- Childhood -->
+            <div class="story-block">
+
+                <span class="story-number">
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        4th & 5th Grade
+                    </h3>
+
+                    <p>
+                        We knew each other way before we actually
+                        became friends. We were classmates once —
+                        back in 4th and 5th grade.
+                    </p>
+
+                    <p>
+                        We weren't particularly close back then,
+                        but I still remember the little things.
+                        You used to sit just ahead of me with
+                        Ayushi, and whenever we had Hindi reading
+                        in class, you would help me because,
+                        well… my Hindi reading was pretty terrible.
+                    </p>
+
+                    <p class="italic-line">
+                        Somehow, even after all these years,
+                        that hasn't improved much. 😭
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Schools -->
+            <div class="school-line">
+
+                <span>MMPS</span>
+
+                <div class="line"></div>
+
+                <span>MMVM</span>
+
+            </div>
+
+
+            <div class="story-block">
+
+                <span class="story-number">
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        Then life took us in different directions.
+                    </h3>
+
+                    <p>
+                        You went to MMPS and I stayed in MMVM,
+                        and for years we were simply two people
+                        who had once been classmates.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Reconnection -->
+            <div class="story-block reconnect">
+
+                <span class="story-number">
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        6 September 2024
+                    </h3>
+
+                    <p>
+                        Then came my birthday.
+                    </p>
+
+                    <p>
+                        You sent me a request and when you told me
+                        you were Manya, I genuinely couldn't remember
+                        who Manya was at first. 😂
+                    </p>
+
+                    <p class="memory-line">
+                        And then I remembered.
+                    </p>
+
+                    <blockquote>
+                        "Oh... Manya.
+                        <br>
+                        We were classmates."
+                    </blockquote>
+
+                </div>
+
+            </div>
+
+
+            <p class="story-ending">
+
+                And somehow, that small reconnection became the
+                beginning of a friendship I genuinely value today.
+
+            </p>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="story-photos">
+
+            <div class="memory-photo photo-one">
+
+                <div class="photo-number">
+                    
+                </div>
+
+                <img
+                    src="photos/manya2.jpg"
+                    alt="Manya memory"
+                >
+
+                <span>
+                    before we became friends
+                </span>
+
+            </div>
+
+
+            <div class="memory-photo photo-two">
+
+                <div class="photo-number">
+                    
+                </div>
+
+                <img
+                    src="photos/manya3.jpg"
+                    alt="Manya memory"
+                >
+
+                <span>
+                    and then, somehow...
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     SLIDE 3
+========================== -->
+
+<section class="slide" id="slide3">
+
+    <div class="admire-slide">
+
+        <!-- LEFT SIDE -->
+        <div class="admire-content">
+
+            <p class="section-label">
+                THE THINGS I ADMIRE
+            </p>
+
+            <h2 class="admire-title">
+                There are so many
+                <span>things I admire about you.</span>
+            </h2>
+
+            <p class="admire-intro">
+                And honestly, I don't think I say these things
+                nearly enough.
+            </p>
+
+
+            <!-- 01 -->
+            <div class="admire-card">
+
+                <div class="admire-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h3>
+                        Your kindness
+                    </h3>
+
+                    <p>
+                        You're genuinely kind, and not just when
+                        it's convenient. You have this natural
+                        tendency to care about people and make
+                        them feel comfortable.
+                    </p>
+
+                    <p>
+                        Recently, when I wasn't really having the
+                        best day, I ended up being unnecessarily
+                        cold with you. You could have taken it
+                        personally. Instead, you simply asked
+                        what was wrong, and when I said I was
+                        just in a bad mood, you didn't judge me.
+                    </p>
+
+                    <p>
+                        You just said that everyone has days when
+                        their mood isn't right.
+                    </p>
+
+                    <p class="highlight-text">
+                        That small response meant more to me than
+                        you probably realised.
+                    </p>
+
+                    <p>
+                        I genuinely felt really bad about the time
+                        when I didn't talk to you properly, I was rude
+                        to you just because I was having a bad day... not
+                        particularly a bad day but a bad and hurtful conversation with one 
+                        of my friend. You had always been so nice to me, 
+                        even when you were angry or going through lots 
+                        and lots of mood swings. 
+                        No matter what, you always knew how to keep 
+                        your anger under control and never took it
+                        out on me. But I, on the other hand, became
+                        rude to you in just one moment, I showered someone
+                        else's anger on you, and honestly, I regretted it a lot.
+                    </p>
+
+                    <p>
+                        Looking back, I realized that you
+                        had always treated me with patience
+                        and kindness, and I should have done
+                        the same for you. I'm really sorry 
+                        for that, and I'm glad that despite all 
+                        those little moments, our friendship still
+                        stayed strong.❤️
+
+                    </p>
+
+                    <p>
+                        Because sometimes, you learn what a
+                        friendship means not from the huge moments,
+                        but from the small moments when someone
+                        could have walked away — and chooses
+                        to understand instead.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 02 -->
+            <div class="admire-card">
+
+                <div class="admire-number">
+                    02
+                </div>
+
+                <div>
+
+                    <h3>
+                        You're talented, but you still
+                        appreciate everyone else.
+                    </h3>
+
+                    <p>
+                        You're genuinely good at things —
+                        especially drawing. I still remember
+                        that wall-painting day when I was
+                        struggling to draw Snow White's face
+                        and you helped me with it.
+                    </p>
+
+                    <p>
+                        But what I admire even more is that
+                        being good at something has never
+                        stopped you from appreciating other
+                        people's work.
+                    </p>
+
+                    <p class="highlight-text">
+                        You know your own worth without needing
+                        to make anyone else feel smaller.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 03 -->
+            <div class="admire-card">
+
+                <div class="admire-number">
+                    03
+                </div>
+
+                <div>
+
+                    <h3>
+                        Your strength
+                    </h3>
+
+                    <p>
+                        You're one of those people who can handle
+                        things without constantly needing everyone
+                        to know what you're going through.
+                    </p>
+
+                    <p>
+                        There's a quiet strength in you. You know
+                        how to stand on your own, make your own
+                        decisions and keep moving forward.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 04 -->
+            <div class="admire-card">
+
+                <div class="admire-number">
+                    04
+                </div>
+
+                <div>
+
+                    <h3>
+                        Your independence
+                    </h3>
+
+                    <p>
+                        I really admire how independent you are.
+                        You don't need constant validation from
+                        everyone around you to know who you are.
+                    </p>
+
+                    <p>
+                        You have your own personality, your own
+                        opinions and your own way of looking at
+                        things — and you aren't afraid to be
+                        yourself.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 05 -->
+            <div class="admire-card">
+
+                <div class="admire-number">
+                    05
+                </div>
+
+                <div>
+
+                    <h3>
+                        The softness you have
+                    </h3>
+
+                    <p>
+                        Maybe one of the simplest things I
+                        appreciate about you is how much you love
+                        animals, how kind you are towards them.
+                    </p>
+
+                    <p>
+                        How you care about their well-being and
+                        their happiness.
+                    </p>
+
+                    <p class="highlight-text">
+                        It says something about a person when they
+                        can genuinely care about beings who can't
+                        give them anything in return.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 06 -->
+            <div class="admire-card last-admiration">
+
+                <div class="admire-number">
+                    06
+                </div>
+
+                <div>
+
+                    <h3>
+                        The way you make people look
+                        at things differently
+                    </h3>
+
+                    <p>
+                        Thank you for being someone who supports
+                        me, motivates me, and reminds me not to
+                        give too much importance to things that
+                        simply aren't worth it.
+                    </p>
+
+                    <p>
+                        And maybe that's what I appreciate most
+                        about our friendship.
+                    </p>
+
+                    <p>
+                        We don't have years of photographs
+                        together. We don't even have some huge
+                        collection of memories from growing up
+                        together.
+                    </p>
+
+                    <p>
+                        But somehow, we still ended up here.
+                        From two classmates who barely talked…
+                        to two people who genuinely enjoy having
+                        each other around.
+                    </p>
+
+                    <p class="highlight-text final-highlight">
+                        And honestly, I'm really glad we did.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Ending -->
+            <div class="admire-ending">
+
+                <p>
+                    AND THAT'S THE THING...
+                </p>
+
+                <h2>
+                    You're simply
+                    <span>one of a kind.</span>
+                </h2>
+
+                <p>
+                    Strong enough to stand on your own.
+                    Kind enough to care about others.
+                    Talented enough to shine.
+                    And humble enough to appreciate
+                    the people around you.
+                </p>
+
+                <p class="ending-italic">
+                    I'm genuinely glad that life somehow
+                    brought us back to each other.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE — TWO PHOTOS -->
+        <div class="admire-photos">
+
+            <div class="admire-photo admire-photo-one">
+
+                <span class="photo-index">
+                    
+                </span>
+
+                <img
+                    src="photos/manya4.jpg"
+                    alt="Manya"
+                >
+
+                <p>
+                    simply you
+                </p>
+
+            </div>
+
+
+            <div class="admire-photo admire-photo-two">
+
+                <span class="photo-index">
+                    
+                </span>
+
+                <img
+                    src="photos/manya5.jpg"
+                    alt="Manya"
+                >
+
+                <p>
+                    one of a kind
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     SLIDE 4
+========================== -->
+
+<section class="slide" id="slide4">
+
+    <div class="support-slide">
+
+        <!-- LEFT PHOTO -->
+        <div class="support-photo support-photo-one">
+
+            <span class="photo-index">
+                
+            </span>
+
+            <img
+                src="photos/manya6.jpg"
+                alt="Manya"
+            >
+
+            <p>
+                whenever you need someone
+            </p>
+
+        </div>
+
+
+        <!-- MAIN CONTENT -->
+        <div class="support-content">
+
+            <p class="section-label">
+                SOMETHING I WANT YOU TO KNOW
+            </p>
+
+            <h2 class="support-title">
+                You can always
+                <span>count on me.</span>
+            </h2>
+
+
+            <div class="support-opening">
+
+                <p>
+                    I may not be there for every good moment,
+                </p>
+
+                <p>
+                    but whenever something feels wrong,
+                </p>
+
+                <p>
+                    I hope you know you can always come to me.
+                </p>
+
+                <p class="strong-line">
+                    You never have to think twice.
+                </p>
+
+            </div>
+
+            <div class="support-message">
+
+                <p>
+                    You never have to think twice before telling
+                    me something that's bothering you.
+                </p>
+
+                <p>
+                    You don't have to explain everything perfectly,
+                    and you don't have to worry about being judged.
+                </p>
+
+                <p>
+                    If you ever need to talk, I'll listen.
+                    Not to give you a damn lecture.
+                    Not to immediately tell you what's right or wrong.
+                    Not to throw facts at you when all you really
+                    need is someone who understands.
+                </p>
+
+                <p class="quiet-line">
+                    Sometimes, you don't need an answer.
+                </p>
+
+                <p class="strong-line">
+                    And if that's what you need,
+                    I'll be there.
+                </p>
+
+                <p class="quiet-line">
+                    You don't have to be okay all the time, Nor you have to pretend to be strong. You can be vulnerable, and you can be yourself. 
+                </p>
+
+            </div>
+
+
+            <!-- Final Reveal -->
+            <div class="support-final">
+
+                <div class="heart-row">
+                    <span>♡</span>
+                    <span>♡</span>
+                    <span>♥</span>
+                    <span>♡</span>
+                </div>
+
+                <p class="most-important">
+                    AND MOST IMPORTANT THING
+                    YOU NEED TO KNOW
+                </p>
+
+                <h3>
+                  I always Got Your Back, No matter what.
+                </h3>
+
+                <p class="final-question">
+                    If you ever need me,
+                </p>
+
+                <p class="turn-around">
+                    just turn around and
+                    <span>look behind you.</span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT PHOTOS -->
+        <div class="support-photo support-photo-two">
+
+            <span class="photo-index">
+                
+            </span>
+
+            <img
+                src="photos/manya7.jpg"
+                alt="Manya"
+            >
+
+            <p>
+                always here
+            </p>
+
+        </div>
+
+
+        <div class="support-photo support-photo-three">
+
+            <span class="photo-index">
+                
+            </span>
+
+            <img
+                src="photos/manya8.jpg"
+                alt="Manya"
+            >
+
+            <p>
+                one more thing
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     SLIDE 5 — BIRTHDAY
+========================== -->
+
+<section class="slide" id="slide5">
+
+    <div class="birthday-slide">
+
+        <!-- Background glow -->
+        <div class="birthday-glow"></div>
+
+
+        <!-- HEADER -->
+        <div class="birthday-header">
+
+            <p class="section-label">
+                FOR YOUR ♥ BIRTHDAY
+            </p>
+
+            <h2>
+                Happy Birthday,
+                <span>Manya.</span>
+            </h2>
+
+            <p class="birthday-intro">
+                A few things I hope this new year of your life
+                brings your way.
+            </p>
+
+        </div>
+
+
+        <!-- =====================
+             WISH 01
+        ====================== -->
+
+        <div class="birthday-wish wish-one">
+
+            <div class="wish-number">
+                
+            </div>
+
+            <p>
+                I hope this year brings you countless reasons
+                to smile, new experiences to look forward to,
+                and moments that feel truly yours.
+            </p>
+
+            <div class="wish-photo photo-birthday-one">
+
+                <img
+                    src="photos/manya9.jpg"
+                    alt="Manya"
+                >
+
+                <span>
+                    a little moment worth remembering
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             WISH 02
+        ====================== -->
+
+        <div class="birthday-wish wish-two">
+
+            <div class="wish-number">
+                
+            </div>
+
+            <p>
+                I hope you keep finding time for the things
+                that make you happy, keep exploring, keep
+                learning, and keep becoming the person
+                you want to be.
+            </p>
+
+            <div class="wish-photo photo-birthday-two">
+
+                <img
+                    src="photos/manya10.jpg"
+                    alt="Manya"
+                >
+
+                <span>
+                    keep smiling
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             WISH 03
+        ====================== -->
+
+        <div class="birthday-wish wish-three">
+
+            <div class="wish-number">
+                
+            </div>
+
+            <p>
+                You have a way of making the people around
+                you feel seen, heard and valued just by
+                being yourself. I hope you always remember how much
+                you have to offer the world.
+            </p>
+
+            <div class="wish-photo photo-birthday-three">
+
+                <img
+                    src="photos/manya11.jpg"
+                    alt="Manya"
+                >
+
+                <span>
+                    simply being you
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             WISH 04
+        ====================== -->
+
+        <div class="birthday-wish wish-four">
+
+            <div class="wish-number">
+                
+            </div>
+
+            <p>
+                Through all the random conversations,
+                good days, bad days and everything in between,
+                I'm genuinely glad that our paths crossed again.
+            </p>
+
+            <div class="wish-photo photo-birthday-four">
+
+                <img
+                    src="photos/manya12.jpg"
+                    alt="Manya"
+                >
+
+                <span>
+                    one of those moments
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             WISH 05
+        ====================== -->
+
+        <div class="birthday-wish wish-five">
+
+            <div class="wish-number">
+                
+            </div>
+
+            <p>
+                I hope you never feel like you have to change
+                who you are just to fit somewhere. Keep your kindness.
+                Keep your strength.
+                Keep your weird little ways
+                of making people smile.
+                I'll always support you, help you and hear you out in every situation. 
+            </p>    
+
+            <div class="wish-photo photo-birthday-five">
+
+                <img
+                    src="photos/manya13.jpg"
+                    alt="Manya"
+                >
+
+                <span>
+                    always remember this
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             ONE LAST THING
+        ====================== -->
+
+        <div class="birthday-ending">
+
+            <p class="last-label">
+                ONE LAST THING
+            </p>
+
+            <p class="last-message">
+                From two classmates who barely talked
+                to two people who genuinely enjoy having
+                each other around —
+            </p>
+
+            <p class="last-line">
+                I'm really glad we ended up here.
+            </p>
+
+            <div class="final-heart">
+                ♡
+            </div>
+
+            <h3>
+                Happy Birthday,
+                <span>Manya.</span>
+            </h3>
+
+            <p class="keep-being">
+                Keep being you.
+            </p>
+
+            <p class="always">
+                Always.
+            </p>
+
+            <div class="final-symbol">
+                ♥
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </main>
+
+
+    <!-- Navigation -->
+    <div class="navigation">
+
+        <span class="slide-number">
+            01 / 05
+        </span>
+
+        <button class="nav-arrow" onclick="goToSlide(currentSlide - 1)">
+           ←
+       </button>
+
+        <button class="nav-arrow" onclick="startMusic(); goToSlide(currentSlide + 1)">
+           →
+        </button>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,2866 @@
+/* =====================================
+   BASIC RESET
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: white;
+}
+
+
+/* =====================================
+   GALAXY BACKGROUND
+===================================== */
+
+body {
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(123, 52, 110, 0.45),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(150, 25, 65, 0.38),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(65, 35, 100, 0.35),
+            transparent 50%
+        ),
+
+        linear-gradient(
+            135deg,
+            #05030d,
+            #10091f,
+            #18091b,
+            #07030d
+        );
+
+}
+
+
+/* =====================================
+   MAIN WEBSITE
+===================================== */
+
+#website {
+
+    width: 100%;
+    height: 100vh;
+
+    position: relative;
+
+}
+
+
+/* =====================================
+   SLIDES
+===================================== */
+
+.slide {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: scale(1.03);
+
+    transition:
+        opacity 1s ease,
+        transform 1.2s ease;
+
+}
+
+
+.slide.active {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: scale(1);
+
+}
+
+
+/* =====================================
+   SLIDE CONTENT
+===================================== */
+
+.slide-content {
+
+    width: min(1200px, 90%);
+
+    display: grid;
+
+    grid-template-columns: 1fr 0.8fr;
+
+    align-items: center;
+
+    gap: 80px;
+
+}
+
+
+/* =====================================
+   TEXT
+===================================== */
+
+.intro-text {
+
+    animation: textReveal 1.4s ease forwards;
+
+}
+
+
+.small-heading {
+
+    font-family: Arial, sans-serif;
+
+    text-transform: uppercase;
+
+    letter-spacing: 5px;
+
+    font-size: 14px;
+
+    color: rgba(255,255,255,0.65);
+
+    margin-bottom: 18px;
+
+}
+
+
+.special-text {
+
+    font-size: clamp(55px, 7vw, 100px);
+
+    line-height: 0.9;
+
+    font-weight: 400;
+
+    letter-spacing: -3px;
+
+}
+
+
+.special-text span {
+
+    display: block;
+
+    font-style: italic;
+
+    color: #f0b4c8;
+
+}
+
+
+.divider {
+
+    width: 90px;
+
+    height: 1px;
+
+    margin: 35px 0;
+
+    background: rgba(255,255,255,0.5);
+
+}
+
+
+.intro-text h2 {
+
+    font-size: clamp(40px, 5vw, 65px);
+
+    font-weight: 400;
+
+    font-style: italic;
+
+    color: #ffffff;
+
+    margin-bottom: 25px;
+
+}
+
+
+.intro-message {
+
+    max-width: 560px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.78);
+
+}
+
+
+/* =====================================
+   PHOTO
+===================================== */
+
+.hero-photo {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+}
+
+
+.photo-frame {
+
+    width: min(370px, 75vw);
+
+    height: min(470px, 65vh);
+
+    padding: 10px;
+
+    position: relative;
+
+    z-index: 2;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    box-shadow:
+        0 0 40px rgba(255, 70, 120, 0.15),
+        0 20px 70px rgba(0,0,0,0.5);
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.photo-frame img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.photo-glow {
+
+    position: absolute;
+
+    width: 350px;
+
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: rgba(196, 50, 100, 0.18);
+
+    filter: blur(80px);
+
+}
+
+
+.photo-caption {
+
+    margin-top: 18px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.55);
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.next-btn {
+    margin-top: 40px;
+    padding: 13px 22px;
+
+    background: transparent;
+    color: white;
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    width: auto;
+    height: auto;
+
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 1px;
+
+    position: relative;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* Keep button text inside the button */
+
+.next-btn span {
+    position: static;
+    display: inline-block;
+
+    margin: 0;
+    padding: 0;
+
+    color: inherit;
+    font-size: inherit;
+    line-height: 1;
+
+    transform: none;
+}
+
+
+/* Arrow */
+
+.next-btn .arrow {
+    display: inline-block;
+    position: static;
+
+    font-size: 16px;
+    line-height: 1;
+}
+
+
+/* Hover */
+
+.next-btn:hover {
+    background: rgba(255,255,255,0.1);
+
+    border-color: rgba(255,255,255,0.7);
+
+    transform: translateX(5px);
+}   
+
+
+.arrow {
+
+    font-size: 20px;
+
+}
+
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+.navigation {
+
+    position: fixed;
+
+    bottom: 35px;
+
+    right: 45px;
+
+    z-index: 50;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.slide-number {
+
+    margin-right: 15px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.55);
+
+}
+
+
+.nav-arrow {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+}
+
+
+.nav-arrow:hover {
+
+    background: rgba(255,255,255,0.12);
+
+    transform: scale(1.08);
+
+}
+
+
+/* =====================================
+   FLOATING HEARTS
+===================================== */
+
+#hearts-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 3;
+
+}
+
+
+.heart {
+
+    position: absolute;
+
+    bottom: -30px;
+
+    color: rgba(255, 110, 150, 0.55);
+
+    font-size: 14px;
+
+    animation: floatHeart linear infinite;
+
+    filter: drop-shadow(
+        0 0 8px rgba(255,80,130,0.5)
+    );
+
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: 0.7;
+
+    }
+
+    85% {
+
+        opacity: 0.5;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            translateX(80px)
+            rotate(180deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================
+   TEXT ANIMATION
+===================================== */
+
+@keyframes textReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =====================================
+   PARTICLE TRANSITION
+===================================== */
+
+#particle-transition {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+}
+
+
+.transition-star {
+
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 18px rgba(255,150,200,0.9);
+
+    animation: starBurst 1.1s ease-out forwards;
+
+}
+
+
+@keyframes starBurst {
+
+    0% {
+
+        transform:
+            translate(0, 0)
+            scale(0);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(1.5);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================
+   PLACEHOLDER SLIDE 2
+===================================== */
+
+.placeholder-content {
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+}
+
+
+.placeholder-content p {
+
+    letter-spacing: 5px;
+
+    font-size: 13px;
+
+    color: rgba(255,255,255,0.5);
+
+}
+
+
+.placeholder-content h2 {
+
+    margin-top: 20px;
+
+    font-family: Georgia, serif;
+
+    font-size: 60px;
+
+    font-weight: 400;
+
+}
+
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width: 800px) {
+
+    .slide-content {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        gap: 30px;
+
+    }
+
+
+    .intro-text {
+
+        order: 2;
+
+    }
+
+
+    .hero-photo {
+
+        order: 1;
+
+    }
+
+
+    .photo-frame {
+
+        width: 230px;
+
+        height: 290px;
+
+    }
+
+
+    .divider {
+
+        margin: 25px auto;
+
+    }
+
+
+    .intro-message {
+
+        margin: auto;
+
+        font-size: 15px;
+
+    }
+
+
+    .next-btn {
+
+        margin: 25px auto 0;
+
+    }
+
+
+    .navigation {
+
+        bottom: 20px;
+
+        right: 20px;
+
+    }
+
+}
+/* =====================================
+   SLIDE 2 — WHERE IT ALL STARTED
+===================================== */
+
+.story-slide {
+
+    width: min(1250px, 90%);
+
+    height: 82vh;
+
+    display: grid;
+
+    grid-template-columns: 1.15fr 0.85fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+    overflow: hidden;
+
+}
+
+
+/* =====================================
+   STORY CONTENT
+===================================== */
+
+.story-content {
+
+    height: 100%;
+
+    overflow-y: auto;
+
+    padding-right: 20px;
+
+    scrollbar-width: none;
+
+    animation: storyReveal 1.2s ease forwards;
+
+}
+
+
+.story-content::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+.section-label {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color: rgba(255,255,255,0.5);
+
+    margin-bottom: 15px;
+
+}
+
+
+.story-title {
+
+    font-size: clamp(45px, 5vw, 72px);
+
+    line-height: 0.95;
+
+    font-weight: 400;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 40px;
+
+}
+
+
+.story-title span {
+
+    display: block;
+
+    color: #e8a7bd;
+
+    font-style: italic;
+
+}
+
+
+/* =====================================
+   STORY BLOCK
+===================================== */
+
+.story-block {
+
+    display: grid;
+
+    grid-template-columns: 40px 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 38px;
+
+}
+
+
+.story-number {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #e7a5bc;
+
+    padding-top: 5px;
+
+}
+
+
+.story-block h3 {
+
+    font-size: 23px;
+
+    font-weight: 400;
+
+    margin-bottom: 12px;
+
+}
+
+
+.story-block p {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.68);
+
+    margin-bottom: 12px;
+
+}
+
+
+.italic-line {
+
+    color: #e6a8bd !important;
+
+    font-style: italic;
+
+}
+
+
+.memory-line {
+
+    color: rgba(255,255,255,0.9) !important;
+
+    font-style: italic;
+
+}
+
+
+/* =====================================
+   SCHOOL LINE
+===================================== */
+
+.school-line {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 15px 0 38px 60px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.55);
+
+}
+
+
+.school-line .line {
+
+    width: 70px;
+
+    height: 1px;
+
+    background: rgba(255,255,255,0.25);
+
+}
+
+
+/* =====================================
+   QUOTE
+===================================== */
+
+.story-block blockquote {
+
+    margin-top: 18px;
+
+    padding-left: 18px;
+
+    border-left: 1px solid #d98ca9;
+
+    font-size: 21px;
+
+    line-height: 1.6;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.9);
+
+}
+
+
+/* =====================================
+   STORY ENDING
+===================================== */
+
+.story-ending {
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.85);
+
+    margin: 10px 0 50px 60px;
+
+    max-width: 550px;
+
+}
+
+
+/* =====================================
+   PHOTOS
+===================================== */
+
+.story-photos {
+
+    height: 100%;
+
+    position: relative;
+
+}
+
+
+.memory-photo {
+
+    position: absolute;
+
+    width: 260px;
+
+    height: 330px;
+
+    padding: 8px;
+
+    background: rgba(255,255,255,0.07);
+
+    border: 1px solid rgba(255,255,255,0.22);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 35px rgba(220,70,120,0.12);
+
+    backdrop-filter: blur(8px);
+
+}
+
+
+.memory-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.memory-photo span {
+
+    position: absolute;
+
+    bottom: -28px;
+
+    left: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.5);
+
+}
+
+
+/* Photo 1 */
+
+.photo-one {
+
+    top: 7%;
+
+    left: 5%;
+
+    transform: rotate(-5deg);
+
+    z-index: 2;
+
+}
+
+
+/* Photo 2 */
+
+.photo-two {
+
+    bottom: 7%;
+
+    right: 2%;
+
+    transform: rotate(6deg);
+
+    z-index: 3;
+
+}
+
+
+/* =====================================
+   PHOTO NUMBER
+===================================== */
+
+.photo-number {
+
+    position: absolute;
+
+    top: -22px;
+
+    right: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.5);
+
+}
+
+
+/* =====================================
+   STORY ANIMATION
+===================================== */
+
+@keyframes storyReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateX(-35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+    }
+
+}
+
+
+/* =====================================
+   SLIDE 2 MOBILE
+===================================== */
+
+@media (max-width: 800px) {
+
+    .story-slide {
+
+        width: 90%;
+
+        height: 78vh;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+    }
+
+
+    .story-photos {
+
+        display: none;
+
+    }
+
+
+    .story-title {
+
+        font-size: 48px;
+
+    }
+
+
+    .story-block {
+
+        grid-template-columns: 30px 1fr;
+
+        gap: 12px;
+
+    }
+
+
+    .story-ending {
+
+        margin-left: 42px;
+
+    }
+
+}
+
+/* =====================================
+   SLIDE 3 — THE THINGS I ADMIRE
+===================================== */
+
+.admire-slide {
+
+    width: min(1250px, 90%);
+
+    height: 82vh;
+
+    display: grid;
+
+    grid-template-columns: 1.15fr 0.85fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+}
+
+
+/* =====================================
+   CONTENT
+===================================== */
+
+.admire-content {
+
+    height: 100%;
+
+    overflow-y: auto;
+
+    padding-right: 25px;
+
+    scrollbar-width: none;
+
+    animation: admireReveal 1.2s ease forwards;
+
+}
+
+
+.admire-content::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+.admire-title {
+
+    font-size: clamp(42px, 5vw, 68px);
+
+    line-height: 0.98;
+
+    font-weight: 400;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.admire-title span {
+
+    display: block;
+
+    color: #e6a4bb;
+
+    font-style: italic;
+
+}
+
+
+.admire-intro {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: rgba(255,255,255,0.55);
+
+    margin-bottom: 55px;
+
+}
+
+
+/* =====================================
+   ADMIRATION CARD
+===================================== */
+
+.admire-card {
+
+    display: grid;
+
+    grid-template-columns: 42px 1fr;
+
+    gap: 20px;
+
+    padding: 0 0 45px;
+
+    margin-bottom: 42px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+}
+
+
+.admire-number {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #e5a2b9;
+
+    padding-top: 5px;
+
+}
+
+
+.admire-card h3 {
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+    line-height: 1.3;
+
+    margin-bottom: 17px;
+
+}
+
+
+.admire-card p {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.85;
+
+    color: rgba(255,255,255,0.67);
+
+    margin-bottom: 15px;
+
+}
+
+
+.highlight-text {
+
+    color: rgba(255,255,255,0.9) !important;
+
+    font-style: italic;
+
+}
+
+
+.final-highlight {
+
+    font-size: 16px !important;
+
+    color: #e9a8bf !important;
+
+}
+
+
+/* =====================================
+   ENDING
+===================================== */
+
+.admire-ending {
+
+    padding: 40px 0 70px 62px;
+
+}
+
+
+.admire-ending > p:first-child {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color: rgba(255,255,255,0.45);
+
+    margin-bottom: 20px;
+
+}
+
+
+.admire-ending h2 {
+
+    font-size: clamp(42px, 5vw, 68px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    margin-bottom: 25px;
+
+}
+
+
+.admire-ending h2 span {
+
+    color: #e4a1b9;
+
+    font-style: italic;
+
+}
+
+
+.admire-ending > p {
+
+    font-family: Arial, sans-serif;
+
+    max-width: 600px;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.68);
+
+}
+
+
+.admire-ending .ending-italic {
+
+    margin-top: 25px;
+
+    color: rgba(255,255,255,0.9);
+
+    font-family: Georgia, serif;
+
+    font-style: italic;
+
+    font-size: 16px;
+
+}
+
+
+/* =====================================
+   PHOTOS
+===================================== */
+
+.admire-photos {
+
+    height: 100%;
+
+    position: relative;
+
+}
+
+
+.admire-photo {
+
+    position: absolute;
+
+    width: 265px;
+
+    height: 350px;
+
+    padding: 8px;
+
+    background: rgba(255,255,255,0.07);
+
+    border: 1px solid rgba(255,255,255,0.22);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.55),
+        0 0 35px rgba(220,70,120,0.13);
+
+    backdrop-filter: blur(8px);
+
+}
+
+
+.admire-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.admire-photo p {
+
+    position: absolute;
+
+    bottom: -27px;
+
+    left: 5px;
+
+    font-size: 11px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.5);
+
+}
+
+
+.photo-index {
+
+    position: absolute;
+
+    top: -22px;
+
+    right: 4px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.5);
+
+}
+
+
+/* First image */
+
+.admire-photo-one {
+
+    top: 5%;
+
+    left: 3%;
+
+    transform: rotate(-6deg);
+
+    z-index: 2;
+
+}
+
+
+/* Second image */
+
+.admire-photo-two {
+
+    bottom: 5%;
+
+    right: 0;
+
+    transform: rotate(7deg);
+
+    z-index: 3;
+
+}
+
+
+/* =====================================
+   ANIMATION
+===================================== */
+
+@keyframes admireReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateX(-35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 800px) {
+
+    .admire-slide {
+
+        width: 90%;
+
+        height: 78vh;
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .admire-photos {
+
+        display: none;
+
+    }
+
+
+    .admire-title {
+
+        font-size: 45px;
+
+    }
+
+
+    .admire-card {
+
+        grid-template-columns: 30px 1fr;
+
+        gap: 12px;
+
+    }
+
+
+    .admire-ending {
+
+        padding-left: 42px;
+
+    }
+
+}
+
+/* =====================================
+   SLIDE 4 — SOMETHING I WANT YOU TO KNOW
+===================================== */
+
+.support-slide {
+
+    width: min(1300px, 92%);
+
+    height: 82vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
+
+.support-content {
+
+    width: min(700px, 70%);
+
+    height: 100%;
+
+    overflow-y: auto;
+
+    padding: 10px 30px 80px;
+
+    text-align: center;
+
+    scrollbar-width: none;
+
+    animation: supportReveal 1.3s ease forwards;
+
+}
+
+
+.support-content::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+.support-title {
+
+    font-size: clamp(45px, 5vw, 70px);
+
+    font-weight: 400;
+
+    line-height: 0.98;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 45px;
+
+}
+
+
+.support-title span {
+
+    display: block;
+
+    color: #e8a5bd;
+
+    font-style: italic;
+
+}
+
+
+/* =====================================
+   OPENING
+===================================== */
+
+.support-opening {
+
+    margin-bottom: 45px;
+
+}
+
+
+.support-opening p {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.68);
+
+    margin-bottom: 5px;
+
+}
+
+
+.support-opening .strong-line {
+
+    margin-top: 18px;
+
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.95);
+
+}
+
+
+/* =====================================
+   MAIN MESSAGE
+===================================== */
+
+.support-message {
+
+    max-width: 620px;
+
+    margin: auto;
+
+}
+
+
+.support-message p {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    color: rgba(255,255,255,0.65);
+
+    margin-bottom: 20px;
+
+}
+
+
+.support-message .quiet-line {
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.82);
+
+    margin: 30px 0;
+
+}
+
+
+.support-message .strong-line {
+
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+
+    font-style: italic;
+
+    color: #e6a3ba;
+
+}
+
+
+/* =====================================
+   FINAL SECTION
+===================================== */
+
+.support-final {
+
+    margin-top: 70px;
+
+    padding-top: 45px;
+
+    border-top: 1px solid rgba(255,255,255,0.12);
+
+}
+
+
+.heart-row {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.heart-row span {
+
+    color: #e5a1b9;
+
+    font-size: 17px;
+
+    animation: heartPulse 2s ease-in-out infinite;
+
+}
+
+
+.heart-row span:nth-child(2) {
+
+    animation-delay: 0.2s;
+
+}
+
+
+.heart-row span:nth-child(3) {
+
+    animation-delay: 0.4s;
+
+}
+
+
+.heart-row span:nth-child(4) {
+
+    animation-delay: 0.6s;
+
+}
+
+
+.most-important {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: rgba(255,255,255,0.45);
+
+    margin-bottom: 25px;
+
+}
+
+
+.support-final h3 {
+
+    font-size: clamp(38px, 4vw, 58px);
+
+    font-weight: 400;
+
+    font-style: italic;
+
+    color: #f0b1c6;
+
+    margin-bottom: 30px;
+
+}
+
+
+.final-question {
+
+    font-family: Georgia, serif;
+
+    font-size: 19px;
+
+    color: rgba(255,255,255,0.75);
+
+    margin-bottom: 8px;
+
+}
+
+
+.turn-around {
+
+    font-family: Georgia, serif;
+
+    font-size: 23px;
+
+    line-height: 1.5;
+
+    color: rgba(255,255,255,0.9);
+
+}
+
+
+.turn-around span {
+
+    display: block;
+
+    color: #f0abc2;
+
+    font-style: italic;
+
+    font-size: 30px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =====================================
+   PHOTOS
+===================================== */
+
+.support-photo {
+
+    position: absolute;
+
+    width: 190px;
+
+    height: 250px;
+
+    padding: 7px;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 35px rgba(230,70,120,0.12);
+
+    backdrop-filter: blur(8px);
+
+}
+
+
+.support-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.support-photo p {
+
+    position: absolute;
+
+    bottom: -25px;
+
+    left: 4px;
+
+    font-size: 10px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.45);
+
+}
+
+
+.support-photo .photo-index {
+
+    position: absolute;
+
+    top: -21px;
+
+    right: 2px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.45);
+
+}
+
+
+/* LEFT */
+
+.support-photo-one {
+
+    left: 1%;
+
+    top: 8%;
+
+    transform: rotate(-7deg);
+
+}
+
+
+/* RIGHT TOP */
+
+.support-photo-two {
+
+    right: 1%;
+
+    top: 3%;
+
+    transform: rotate(6deg);
+
+}
+
+
+/* RIGHT BOTTOM */
+
+.support-photo-three {
+
+    right: 5%;
+
+    bottom: 5%;
+
+    transform: rotate(-4deg);
+
+    z-index: 3;
+
+}
+
+
+/* =====================================
+   ANIMATIONS
+===================================== */
+
+@keyframes supportReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+@keyframes heartPulse {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+
+        opacity: 0.5;
+
+    }
+
+    50% {
+
+        transform: scale(1.3);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 900px) {
+
+    .support-photo {
+
+        display: none;
+
+    }
+
+
+    .support-content {
+
+        width: 95%;
+
+        padding-left: 10px;
+
+        padding-right: 10px;
+
+    }
+
+
+    .support-title {
+
+        font-size: 46px;
+
+    }
+
+}
+
+/* =====================================
+   SLIDE 5 — BIRTHDAY
+===================================== */
+
+.birthday-slide {
+
+    width: min(1250px, 90%);
+
+    height: 82vh;
+
+    position: relative;
+
+    overflow-y: auto;
+
+    scrollbar-width: none;
+
+    padding: 20px 20px 100px;
+
+    animation: birthdayReveal 1.4s ease forwards;
+
+}
+
+
+.birthday-slide::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+/* =====================================
+   BACKGROUND GLOW
+===================================== */
+
+.birthday-glow {
+
+    position: fixed;
+
+    width: 500px;
+
+    height: 500px;
+
+    left: 50%;
+
+    top: 45%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(220, 55, 105, 0.18),
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.birthday-header {
+
+    text-align: center;
+
+    margin-bottom: 90px;
+
+}
+
+
+.birthday-header h2 {
+
+    font-size: clamp(48px, 6vw, 82px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.birthday-header h2 span {
+
+    color: #efa9c0;
+
+    font-style: italic;
+
+}
+
+
+.birthday-intro {
+
+    max-width: 500px;
+
+    margin: auto;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.55);
+
+}
+
+
+/* =====================================
+   WISH
+===================================== */
+
+.birthday-wish {
+
+    width: 90%;
+
+    max-width: 900px;
+
+    min-height: 230px;
+
+    margin: 0 auto 100px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.wish-number {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #e7a4bb;
+
+}
+
+
+.birthday-wish > p {
+
+    width: 55%;
+
+    margin-left: 50px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    color: rgba(255,255,255,0.72);
+
+}
+
+
+.birthday-wish .highlight-wish {
+
+    color: rgba(255,255,255,0.92);
+
+    font-family: Georgia, serif;
+
+    font-style: italic;
+
+}
+
+
+/* =====================================
+   WISH PHOTOS
+===================================== */
+
+.wish-photo {
+
+    position: absolute;
+
+    width: 190px;
+
+    height: 235px;
+
+    padding: 7px;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 35px rgba(220,70,120,0.12);
+
+    backdrop-filter: blur(8px);
+
+}
+
+
+.wish-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.wish-photo span {
+
+    position: absolute;
+
+    bottom: -25px;
+
+    left: 4px;
+
+    font-size: 10px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.45);
+
+}
+
+
+/* =====================================
+   INDIVIDUAL PHOTO POSITIONS
+===================================== */
+
+.wish-one .wish-photo {
+
+    right: 0;
+
+    transform: rotate(5deg);
+
+}
+
+
+.wish-two .wish-photo {
+
+    left: 0;
+
+    transform: rotate(-6deg);
+
+}
+
+
+.wish-three .wish-photo {
+
+    right: 0;
+
+    transform: rotate(6deg);
+
+}
+
+
+.wish-four .wish-photo {
+
+    left: 0;
+
+    transform: rotate(-5deg);
+
+}
+
+
+.wish-five .wish-photo {
+
+    right: 0;
+
+    transform: rotate(5deg);
+
+}
+
+
+/* =====================================
+   WISH ALTERNATING LAYOUT
+===================================== */
+
+.wish-two,
+.wish-four {
+
+    justify-content: flex-end;
+
+}
+
+
+.wish-two > p,
+.wish-four > p {
+
+    margin-left: auto;
+
+    margin-right: 50px;
+
+}
+
+
+/* =====================================
+   ONE LAST THING
+===================================== */
+
+.birthday-ending {
+
+    text-align: center;
+
+    max-width: 750px;
+
+    margin: 130px auto 50px;
+
+    padding-top: 70px;
+
+    border-top: 1px solid rgba(255,255,255,0.12);
+
+}
+
+
+.last-label {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    color: rgba(255,255,255,0.45);
+
+    margin-bottom: 30px;
+
+}
+
+
+.last-message {
+
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    line-height: 1.7;
+
+    color: rgba(255,255,255,0.72);
+
+}
+
+
+.last-line {
+
+    margin-top: 18px;
+
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.95);
+
+}
+
+
+.final-heart {
+
+    margin: 40px 0;
+
+    font-size: 25px;
+
+    color: #efa9c0;
+
+    animation: heartPulse 2s ease-in-out infinite;
+
+}
+
+
+.birthday-ending h3 {
+
+    font-size: clamp(40px, 5vw, 65px);
+
+    font-weight: 400;
+
+    margin-bottom: 20px;
+
+}
+
+
+.birthday-ending h3 span {
+
+    color: #efa9c0;
+
+    font-style: italic;
+
+}
+
+
+.keep-being {
+
+    font-family: Georgia, serif;
+
+    font-size: 21px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,0.85);
+
+}
+
+
+.always {
+
+    margin-top: 5px;
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+
+    font-style: italic;
+
+    color: #e5a1b9;
+
+}
+
+
+.final-symbol {
+
+    margin-top: 25px;
+
+    font-size: 18px;
+
+    color: #efa9c0;
+
+}
+
+
+/* =====================================
+   ANIMATION
+===================================== */
+
+@keyframes birthdayReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 800px) {
+
+    .birthday-slide {
+
+        width: 92%;
+
+        padding-left: 5px;
+
+        padding-right: 5px;
+
+    }
+
+
+    .birthday-header {
+
+        margin-bottom: 60px;
+
+    }
+
+
+    .birthday-wish {
+
+        width: 95%;
+
+        min-height: 330px;
+
+        display: block;
+
+        text-align: center;
+
+        margin-bottom: 90px;
+
+    }
+
+
+    .birthday-wish > p {
+
+        width: 100%;
+
+        margin: 50px 0 0;
+
+        font-size: 14px;
+
+    }
+
+
+    .wish-photo {
+
+        position: relative;
+
+        margin: 30px auto 0;
+
+        left: auto !important;
+
+        right: auto !important;
+
+        display: block;
+
+    }
+
+
+    .wish-two,
+    .wish-four {
+
+        justify-content: initial;
+
+    }
+
+
+    .wish-two > p,
+    .wish-four > p {
+
+        margin: 50px 0 0;
+
+    }
+
+}
+
+/* =====================================
+   MUSIC BUTTON
+===================================== */
+
+.music-button {
+
+    position: fixed;
+
+    top: 30px;
+    right: 35px;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    z-index: 200;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    color: rgba(255,255,255,0.85);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 0 20px rgba(220,70,120,0.12);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+.music-button:hover {
+
+    transform: scale(1.1);
+
+    background: rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 0 25px rgba(240,100,150,0.25);
+
+}
+
+.music-button.playing {
+
+    color: #f0aec4;
+
+    border-color: rgba(240,170,195,0.5);
+
+    animation: musicPulse 2s ease-in-out infinite;
+
+}
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 0 15px rgba(240,100,150,0.15);
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 30px rgba(240,100,150,0.4);
+
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .music-button {
+
+        top: 20px;
+        right: 20px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 17px;
+
+    }
+
+}
+
+/* =====================================
+   FIX CONTINUE BUTTON
+===================================== */
+
+button.next-btn {
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    flex-direction: row !important;
+
+    width: fit-content !important;
+    min-width: 145px !important;
+    height: auto !important;
+
+    padding: 13px 22px !important;
+    margin-top: 40px !important;
+
+    box-sizing: border-box !important;
+
+    position: relative !important;
+
+    gap: 18px !important;
+
+    background: transparent !important;
+    color: white !important;
+
+    border: 1px solid rgba(255,255,255,0.35) !important;
+
+    font-family: inherit !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    letter-spacing: 1px !important;
+
+    cursor: pointer !important;
+}
+
+
+/* Keep BOTH parts inside the button */
+
+button.next-btn span {
+    position: static !important;
+
+    display: inline-block !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: none !important;
+
+    color: inherit !important;
+    font-size: inherit !important;
+    line-height: 1 !important;
+}
+
+
+/* Arrow */
+
+button.next-btn .arrow {
+    position: static !important;
+
+    display: inline-block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 17px !important;
+}
+
+
+/* Hover */
+
+button.next-btn:hover {
+    background: rgba(255,255,255,0.1) !important;
+
+    border-color: rgba(255,255,255,0.7) !important;
+
+    transform: translateX(5px) !important;
+}
