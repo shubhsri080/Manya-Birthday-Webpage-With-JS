@@ -19,6 +19,67 @@ body {
     color: white;
 }
 
+/* =====================================
+   ATMOSPHERIC GALAXY LAYERS
+===================================== */
+
+body {
+    position: relative;
+    isolation: isolate;
+    background-color: #07040f;
+    background-image:
+        radial-gradient(ellipse at 15% 18%, rgba(173, 69, 139, 0.22), transparent 38%),
+        radial-gradient(ellipse at 83% 78%, rgba(130, 35, 89, 0.2), transparent 40%),
+        radial-gradient(ellipse at 54% 42%, rgba(67, 54, 133, 0.17), transparent 52%),
+        linear-gradient(135deg, #05030d 0%, #10091f 48%, #18091b 75%, #07030d 100%);
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: -15%;
+    pointer-events: none;
+}
+
+body::before {
+    z-index: 0;
+    opacity: 0.9;
+    background:
+        radial-gradient(1px 1px at 7% 18%, rgba(255,255,255,.95) 99%, transparent),
+        radial-gradient(1px 1px at 19% 73%, rgba(255,225,242,.8) 99%, transparent),
+        radial-gradient(1.5px 1.5px at 31% 42%, rgba(255,255,255,.85) 99%, transparent),
+        radial-gradient(1px 1px at 43% 87%, rgba(255,255,255,.72) 99%, transparent),
+        radial-gradient(1px 1px at 58% 16%, rgba(255,220,242,.8) 99%, transparent),
+        radial-gradient(1.5px 1.5px at 69% 57%, rgba(255,255,255,.88) 99%, transparent),
+        radial-gradient(1px 1px at 81% 31%, rgba(255,235,248,.75) 99%, transparent),
+        radial-gradient(1px 1px at 93% 82%, rgba(255,255,255,.9) 99%, transparent),
+        radial-gradient(ellipse at 25% 35%, rgba(244, 64, 164, .22), transparent 34%),
+        radial-gradient(ellipse at 76% 58%, rgba(111, 99, 230, .22), transparent 36%);
+    background-size: 310px 270px, 370px 330px, 430px 360px, 350px 400px,
+        390px 310px, 450px 390px, 330px 350px, 410px 370px, 100% 100%, 100% 100%;
+    animation: galaxyDrift 34s ease-in-out infinite alternate;
+}
+
+body::after {
+    z-index: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(2, 1, 8, .24) 100%);
+}
+
+#website {
+    z-index: 1;
+    isolation: isolate;
+}
+
+@keyframes galaxyDrift {
+    from { transform: translate3d(-1%, -1%, 0) scale(1); }
+    to { transform: translate3d(1%, 1%, 0) scale(1.035); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before { animation: none; }
+}
+
 
 /* =====================================
    GALAXY BACKGROUND
@@ -27,6 +88,9 @@ body {
 body {
 
     background:
+        radial-gradient(ellipse at 12% 22%, rgba(233, 76, 159, 0.34), transparent 34%),
+        radial-gradient(ellipse at 82% 74%, rgba(116, 72, 220, 0.3), transparent 38%),
+        radial-gradient(ellipse at 54% 44%, rgba(238, 115, 184, 0.12), transparent 50%),
         radial-gradient(
             circle at 20% 20%,
             rgba(123, 52, 110, 0.45),
@@ -47,10 +111,10 @@ body {
 
         linear-gradient(
             135deg,
-            #05030d,
-            #10091f,
-            #18091b,
-            #07030d
+            #080414,
+            #160b2c,
+            #260d28,
+            #090512
         );
 
 }
