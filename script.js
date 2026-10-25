@@ -1,307 +1,235 @@
 /* =====================================
-   SLIDE SYSTEM
+   SLIDES AND NAVIGATION
 ===================================== */
 
 let currentSlide = 0;
 
-const slides = document.querySelectorAll(".slide");
-
+const slides = [...document.querySelectorAll(".slide")];
 const slideNumber = document.querySelector(".slide-number");
+const transitionContainer = document.getElementById("slide-transition");
+const navigation = document.querySelector(".navigation");
+const previousButton = document.querySelector(".nav-arrow--previous");
+const nextButton = document.querySelector(".nav-arrow--next");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-const transitionContainer =
-    document.getElementById("particle-transition");
+const revealTargets = document.querySelectorAll(
+    ".story-block, .admire-card, .support-opening, .support-message, .support-final, .birthday-wish"
+);
 
+if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
 
-/* =====================================
-   FLOATING HEARTS
-===================================== */
-
-const heartsContainer =
-    document.getElementById("hearts-container");
-
-
-function createHeart() {
-
-    const heart = document.createElement("div");
-
-    heart.classList.add("heart");
-
-    heart.innerHTML = "♥";
-
-    heart.style.left =
-        Math.random() * 100 + "%";
-
-    heart.style.fontSize =
-        (10 + Math.random() * 14) + "px";
-
-    heart.style.animationDuration =
-        (8 + Math.random() * 10) + "s";
-
-    heart.style.animationDelay =
-        Math.random() * 5 + "s";
-
-    heartsContainer.appendChild(heart);
-
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    }, 20000);
-
+    revealTargets.forEach((element) => {
+        element.classList.add("reveal-on-scroll");
+        revealObserver.observe(element);
+    });
+} else {
+    revealTargets.forEach((element) => element.classList.add("is-visible"));
 }
 
+document.querySelectorAll(".slide img").forEach((image, index) => {
+    image.decoding = "async";
+    if (index === 0) {
+        image.fetchPriority = "high";
+    } else {
+        image.loading = "lazy";
+    }
+});
 
-/* Create hearts continuously */
+let isTransitioning = false;
+let transitionTimers = [];
 
-setInterval(createHeart, 700);
-
-
-/* Initial hearts */
-
-for (let i = 0; i < 15; i++) {
-
-    setTimeout(createHeart, i * 250);
-
-}
-
-
-/* =====================================
-   STAR BURST TRANSITION
-===================================== */
-
-function createStarBurst() {
-
-    transitionContainer.innerHTML = "";
-
-
-    const numberOfStars = 180;
-
-
-    for (let i = 0; i < numberOfStars; i++) {
-
-        const star =
-            document.createElement("div");
-
-        star.classList.add("transition-star");
-
-
-        /* Random starting position */
-
-        const startX =
-            Math.random() * window.innerWidth;
-
-        const startY =
-            Math.random() * window.innerHeight;
-
-
-        /* Random explosion direction */
-
-        const angle =
-            Math.random() * Math.PI * 2;
-
-        const distance =
-            300 + Math.random() * 900;
-
-
-        const x =
-            Math.cos(angle) * distance;
-
-        const y =
-            Math.sin(angle) * distance;
-
-
-        star.style.left =
-            startX + "px";
-
-        star.style.top =
-            startY + "px";
-
-
-        star.style.setProperty(
-            "--x",
-            x + "px"
-        );
-
-        star.style.setProperty(
-            "--y",
-            y + "px"
-        );
-
-
-        star.style.animationDelay =
-            Math.random() * 0.25 + "s";
-
-
-        transitionContainer.appendChild(star);
-
+function updateSlideControls() {
+    if (slideNumber) {
+        slideNumber.textContent = `${String(currentSlide + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
     }
 
+    if (previousButton) previousButton.disabled = currentSlide === 0 || isTransitioning;
+    if (nextButton) nextButton.disabled = currentSlide === slides.length - 1 || isTransitioning;
 }
 
-
-/* =====================================
-   GO TO SLIDE
-===================================== */
+function clearTransitionTimers() {
+    transitionTimers.forEach(window.clearTimeout);
+    transitionTimers = [];
+}
 
 function goToSlide(targetSlide) {
+    const nextSlideIndex = Number(targetSlide);
 
-    if (targetSlide === currentSlide) {
-
+    if (
+        !Number.isInteger(nextSlideIndex) ||
+        nextSlideIndex < 0 ||
+        nextSlideIndex >= slides.length ||
+        nextSlideIndex === currentSlide ||
+        isTransitioning
+    ) {
         return;
-
     }
 
+    clearTransitionTimers();
+    isTransitioning = true;
+    updateSlideControls();
+    if (!prefersReducedMotion.matches && transitionContainer) {
+        transitionContainer.classList.add("is-active");
+    }
 
-    /* Create particle explosion */
+    if (navigation) navigation.setAttribute("aria-busy", "true");
 
-    createStarBurst();
+    const switchSlide = () => {
+        slides[currentSlide].classList.remove("active");
+        slides[currentSlide].setAttribute("aria-hidden", "true");
 
+        currentSlide = nextSlideIndex;
+        slides[currentSlide].classList.add("active");
+        slides[currentSlide].setAttribute("aria-hidden", "false");
 
-    /* Temporarily hide navigation */
+        const scrollableContent = slides[currentSlide].querySelector(
+            ".story-content, .admire-content, .support-content, .birthday-slide"
+        );
+        if (scrollableContent) scrollableContent.scrollTop = 0;
 
-    document.querySelector(".navigation")
-        .style.pointerEvents = "none";
+        updateSlideControls();
+    };
 
+    const finishTransition = () => {
+        if (transitionContainer) transitionContainer.classList.remove("is-active");
+        isTransitioning = false;
+        if (navigation) navigation.removeAttribute("aria-busy");
+        updateSlideControls();
+    };
 
-    setTimeout(() => {
+    if (prefersReducedMotion.matches) {
+        switchSlide();
+        finishTransition();
+        return;
+    }
 
-        slides[currentSlide]
-            .classList.remove("active");
-
-
-        currentSlide = targetSlide;
-
-
-        slides[currentSlide]
-            .classList.add("active");
-
-
-        slideNumber.textContent =
-            String(currentSlide + 1).padStart(2, "0")
-            + " / 05";
-
-
-    }, 550);
-
-
-    /* Clean transition */
-
-    setTimeout(() => {
-
-        transitionContainer.innerHTML = "";
-
-        document.querySelector(".navigation")
-            .style.pointerEvents = "auto";
-
-    }, 1300);
-
+    transitionTimers.push(window.setTimeout(switchSlide, 420));
+    transitionTimers.push(window.setTimeout(finishTransition, 1370));
 }
 
+slides.forEach((slide, index) => {
+    slide.setAttribute("aria-hidden", index === currentSlide ? "false" : "true");
+});
+updateSlideControls();
+
+document.addEventListener("keydown", (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.defaultPrevented) return;
+
+    const target = event.target;
+    const isTyping = target instanceof HTMLElement && (
+        target.isContentEditable ||
+        target.matches("input, textarea, select, button, a, [role='button']") ||
+        target.closest(".story-content, .admire-content, .support-content, .birthday-slide")
+    );
+    if (isTyping) return;
+
+    if (event.key === "ArrowRight" && currentSlide < slides.length - 1) {
+        event.preventDefault();
+        goToSlide(currentSlide + 1);
+    } else if (event.key === "ArrowLeft" && currentSlide > 0) {
+        event.preventDefault();
+        goToSlide(currentSlide - 1);
+    }
+});
 
 /* =====================================
-   KEYBOARD NAVIGATION
+   DECORATIVE HEARTS
 ===================================== */
 
-document.addEventListener(
-    "keydown",
-    function(event) {
+const heartsContainer = document.getElementById("hearts-container");
+const MAX_HEARTS = 5;
 
-        if (event.key === "ArrowRight") {
+function createHeart() {
+    if (!heartsContainer || prefersReducedMotion.matches) return;
 
-            if (currentSlide < slides.length - 1) {
-
-                goToSlide(currentSlide + 1);
-
-            }
-
-        }
-
-
-        if (event.key === "ArrowLeft") {
-
-            if (currentSlide > 0) {
-
-                goToSlide(currentSlide - 1);
-
-            }
-
-        }
-
+    while (heartsContainer.childElementCount >= MAX_HEARTS) {
+        heartsContainer.firstElementChild.remove();
     }
-);
+
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    heart.setAttribute("aria-hidden", "true");
+    heart.textContent = "♥";
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.fontSize = `${8 + Math.random() * 7}px`;
+    heart.style.animationDuration = `${8 + Math.random() * 10}s`;
+    heart.addEventListener("animationend", () => heart.remove(), { once: true });
+    heartsContainer.appendChild(heart);
+}
+
+let heartTimer = null;
+
+function syncDecorativeMotion() {
+    if (heartTimer) {
+        window.clearInterval(heartTimer);
+        heartTimer = null;
+    }
+
+    if (!prefersReducedMotion.matches) {
+        for (let i = 0; i < 3; i += 1) {
+            window.setTimeout(createHeart, i * 520);
+        }
+        heartTimer = window.setInterval(createHeart, 2600);
+    } else if (heartsContainer) {
+        heartsContainer.replaceChildren();
+    }
+}
+
+syncDecorativeMotion();
+prefersReducedMotion.addEventListener?.("change", syncDecorativeMotion);
 
 /* =====================================
    BACKGROUND MUSIC
 ===================================== */
 
-const backgroundMusic =
-    document.getElementById("backgroundMusic");
+const backgroundMusic = document.getElementById("backgroundMusic");
+const musicButton = document.getElementById("musicButton");
 
-const musicButton =
-    document.getElementById("musicButton");
+function updateMusicControl(isPlaying) {
+    if (!musicButton) return;
 
-let musicPlaying = false;
+    musicButton.textContent = isPlaying ? "🔊" : "♪";
+    musicButton.setAttribute("aria-pressed", String(isPlaying));
+    musicButton.setAttribute("aria-label", isPlaying ? "Pause background music" : "Play background music");
+    musicButton.classList.toggle("playing", isPlaying);
+}
+
+async function startMusic() {
+    if (!backgroundMusic) return;
+
+    backgroundMusic.volume = 0.35;
+
+    try {
+        await backgroundMusic.play();
+        updateMusicControl(true);
+    } catch (error) {
+        updateMusicControl(false);
+        console.info("Background music could not be played.", error);
+    }
+}
 
 function toggleMusic() {
+    if (!backgroundMusic) return;
 
-    if (!musicPlaying) {
-
-        backgroundMusic.volume = 0.35;
-
-        backgroundMusic.play()
-            .then(() => {
-
-                musicPlaying = true;
-
-                musicButton.innerHTML = "🔊";
-
-                musicButton.classList.add("playing");
-
-            })
-            .catch(() => {
-
-                console.log(
-                    "Music could not be played."
-                );
-
-            });
-
+    if (backgroundMusic.paused) {
+        startMusic();
     } else {
-
         backgroundMusic.pause();
-
-        musicPlaying = false;
-
-        musicButton.innerHTML = "♪";
-
-        musicButton.classList.remove("playing");
-
+        updateMusicControl(false);
     }
-
 }
 
-function startMusic() {
-
-    const music = document.getElementById("backgroundMusic");
-    const button = document.getElementById("musicButton");
-
-    music.volume = 0.35;
-
-    music.play()
-        .then(() => {
-
-            musicPlaying = true;
-
-            if (button) {
-                button.innerHTML = "🔊";
-                button.classList.add("playing");
-            }
-
-        })
-        .catch((error) => {
-
-            console.log("Music could not be played:", error);
-
-        });
+if (backgroundMusic) {
+    backgroundMusic.addEventListener("play", () => updateMusicControl(true));
+    backgroundMusic.addEventListener("pause", () => updateMusicControl(false));
 }
+
+updateMusicControl(false);

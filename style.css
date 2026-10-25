@@ -8,15 +8,28 @@
     box-sizing: border-box;
 }
 
+:root {
+    color-scheme: dark;
+    --color-primary: #f0b1c8;
+    --color-secondary: #ead2e9;
+    --color-accent: #f1c5d2;
+    --color-background: #080414;
+    --color-text: #fff8f6;
+    --color-muted: #eee4ec;
+    --font-heading: "Cormorant Garamond", Georgia, serif;
+    --font-script: "Dancing Script", "Segoe Script", "Brush Script MT", cursive;
+    --font-body: "DM Sans", "Segoe UI", Arial, sans-serif;
+}
+
 html,
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
+    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    color: white;
+    font-family: var(--font-body);
+    color: var(--color-text);
 }
 
 /* =====================================
@@ -26,12 +39,15 @@ body {
 body {
     position: relative;
     isolation: isolate;
-    background-color: #07040f;
+    background-color: var(--color-background);
     background-image:
-        radial-gradient(ellipse at 15% 18%, rgba(173, 69, 139, 0.22), transparent 38%),
-        radial-gradient(ellipse at 83% 78%, rgba(130, 35, 89, 0.2), transparent 40%),
-        radial-gradient(ellipse at 54% 42%, rgba(67, 54, 133, 0.17), transparent 52%),
-        linear-gradient(135deg, #05030d 0%, #10091f 48%, #18091b 75%, #07030d 100%);
+        radial-gradient(ellipse at 12% 22%, rgba(233, 76, 159, 0.34), transparent 34%),
+        radial-gradient(ellipse at 82% 74%, rgba(116, 72, 220, 0.3), transparent 38%),
+        radial-gradient(ellipse at 54% 44%, rgba(238, 115, 184, 0.12), transparent 50%),
+        radial-gradient(circle at 20% 20%, rgba(123, 52, 110, 0.45), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(150, 25, 65, 0.38), transparent 35%),
+        radial-gradient(circle at 50% 50%, rgba(65, 35, 100, 0.35), transparent 50%),
+        linear-gradient(135deg, #080414, #160b2c, #260d28, #090512);
 }
 
 body::before,
@@ -63,12 +79,10 @@ body::before {
 
 body::after {
     z-index: 0;
-    background: radial-gradient(ellipse at center, transparent 30%, rgba(2, 1, 8, .24) 100%);
-}
-
-#website {
-    z-index: 1;
-    isolation: isolate;
+    background:
+        radial-gradient(ellipse at 68% 30%, rgba(208, 83, 163, 0.1), transparent 42%),
+        radial-gradient(ellipse at 30% 72%, rgba(111, 91, 196, 0.09), transparent 40%),
+        radial-gradient(ellipse at center, transparent 30%, rgba(2, 1, 8, .24) 100%);
 }
 
 @keyframes galaxyDrift {
@@ -80,45 +94,19 @@ body::after {
     body::before { animation: none; }
 }
 
-
-/* =====================================
-   GALAXY BACKGROUND
-===================================== */
-
-body {
-
-    background:
-        radial-gradient(ellipse at 12% 22%, rgba(233, 76, 159, 0.34), transparent 34%),
-        radial-gradient(ellipse at 82% 74%, rgba(116, 72, 220, 0.3), transparent 38%),
-        radial-gradient(ellipse at 54% 44%, rgba(238, 115, 184, 0.12), transparent 50%),
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(123, 52, 110, 0.45),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(150, 25, 65, 0.38),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(65, 35, 100, 0.35),
-            transparent 50%
-        ),
-
-        linear-gradient(
-            135deg,
-            #080414,
-            #160b2c,
-            #260d28,
-            #090512
-        );
-
+h1, h2, h3,
+.story-title,
+.admire-title,
+.support-title,
+.birthday-header h2,
+.birthday-ending h3 {
+    font-family: var(--font-heading);
 }
 
+#website {
+    z-index: 2;
+    isolation: isolate;
+}
 
 /* =====================================
    MAIN WEBSITE
@@ -128,6 +116,7 @@ body {
 
     width: 100%;
     height: 100vh;
+    height: 100dvh;
 
     position: relative;
 
@@ -146,6 +135,7 @@ body {
 
     width: 100%;
     height: 100vh;
+    height: 100dvh;
 
     display: flex;
     align-items: center;
@@ -156,10 +146,12 @@ body {
     visibility: hidden;
 
     transform: scale(1.03);
+    z-index: 1;
 
     transition:
-        opacity 1s ease,
-        transform 1.2s ease;
+        opacity 0.82s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.95s cubic-bezier(0.22, 0.61, 0.36, 1),
+        visibility 0s linear 0.82s;
 
 }
 
@@ -171,7 +163,17 @@ body {
     visibility: visible;
 
     transform: scale(1);
+    z-index: 2;
 
+    transition:
+        opacity 0.82s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.95s cubic-bezier(0.22, 0.61, 0.36, 1),
+        visibility 0s;
+
+}
+
+.slide[aria-hidden="true"] {
+    pointer-events: none;
 }
 
 
@@ -207,7 +209,7 @@ body {
 
 .small-heading {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     text-transform: uppercase;
 
@@ -215,7 +217,7 @@ body {
 
     font-size: 14px;
 
-    color: rgba(255,255,255,0.65);
+    color: var(--color-muted);
 
     margin-bottom: 18px;
 
@@ -241,7 +243,7 @@ body {
 
     font-style: italic;
 
-    color: #f0b4c8;
+    color: var(--color-primary);
 
 }
 
@@ -267,7 +269,7 @@ body {
 
     font-style: italic;
 
-    color: #ffffff;
+    color: var(--color-text);
 
     margin-bottom: 25px;
 
@@ -282,7 +284,7 @@ body {
 
     line-height: 1.8;
 
-    color: rgba(255,255,255,0.78);
+    color: var(--color-muted);
 
 }
 
@@ -367,7 +369,7 @@ body {
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.55);
+    color: var(--color-muted);
 
     font-size: 14px;
 
@@ -383,7 +385,7 @@ body {
     padding: 13px 22px;
 
     background: transparent;
-    color: white;
+    color: var(--color-text);
 
     border: 1px solid rgba(255,255,255,0.35);
 
@@ -445,7 +447,7 @@ body {
 .next-btn:hover {
     background: rgba(255,255,255,0.1);
 
-    border-color: rgba(255,255,255,0.7);
+    border-color: var(--color-muted);
 
     transform: translateX(5px);
 }   
@@ -485,13 +487,13 @@ body {
 
     margin-right: 15px;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 12px;
 
     letter-spacing: 2px;
 
-    color: rgba(255,255,255,0.55);
+    color: var(--color-muted);
 
 }
 
@@ -508,7 +510,7 @@ body {
 
     border: 1px solid rgba(255,255,255,0.25);
 
-    color: white;
+    color: var(--color-text);
 
     font-size: 18px;
 
@@ -542,7 +544,7 @@ body {
 
     overflow: hidden;
 
-    z-index: 3;
+    z-index: 1;
 
 }
 
@@ -553,15 +555,13 @@ body {
 
     bottom: -30px;
 
-    color: rgba(255, 110, 150, 0.55);
+    color: rgba(207, 185, 238, 0.24);
 
     font-size: 14px;
 
-    animation: floatHeart linear infinite;
+    animation: floatHeart linear 1 forwards;
 
-    filter: drop-shadow(
-        0 0 8px rgba(255,80,130,0.5)
-    );
+    filter: drop-shadow(0 0 7px rgba(181, 149, 222, 0.14));
 
 }
 
@@ -581,13 +581,13 @@ body {
 
     15% {
 
-        opacity: 0.7;
+        opacity: 0.36;
 
     }
 
     85% {
 
-        opacity: 0.5;
+        opacity: 0.24;
 
     }
 
@@ -630,114 +630,37 @@ body {
 }
 
 
-/* =====================================
-   PARTICLE TRANSITION
-===================================== */
-
-#particle-transition {
-
+/* Soft nebula sweep over the crossfade */
+#slide-transition {
     position: fixed;
-
     inset: 0;
-
     z-index: 100;
-
-    pointer-events: none;
-
     overflow: hidden;
-
+    pointer-events: none;
 }
 
-
-.transition-star {
-
+#slide-transition::before {
+    content: "";
     position: absolute;
-
-    width: 5px;
-
-    height: 5px;
-
-    border-radius: 50%;
-
-    background: white;
-
-    box-shadow:
-        0 0 8px white,
-        0 0 18px rgba(255,150,200,0.9);
-
-    animation: starBurst 1.1s ease-out forwards;
-
+    inset: -24%;
+    opacity: 0;
+    background:
+        radial-gradient(ellipse at 38% 50%, rgba(255, 184, 222, 0.58), transparent 34%),
+        radial-gradient(ellipse at 68% 48%, rgba(181, 146, 245, 0.44), transparent 40%),
+        linear-gradient(105deg, transparent 36%, rgba(255, 226, 241, 0.2) 50%, transparent 64%);
+    filter: blur(18px);
+    transform: translateX(-18%) scale(0.98);
 }
 
-
-@keyframes starBurst {
-
-    0% {
-
-        transform:
-            translate(0, 0)
-            scale(0);
-
-        opacity: 0;
-
-    }
-
-    15% {
-
-        opacity: 1;
-
-    }
-
-    100% {
-
-        transform:
-            translate(
-                var(--x),
-                var(--y)
-            )
-            scale(1.5);
-
-        opacity: 0;
-
-    }
-
+#slide-transition.is-active::before {
+    animation: nebulaSweep 1.05s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-
-/* =====================================
-   PLACEHOLDER SLIDE 2
-===================================== */
-
-.placeholder-content {
-
-    text-align: center;
-
-    font-family: Arial, sans-serif;
-
-}
-
-
-.placeholder-content p {
-
-    letter-spacing: 5px;
-
-    font-size: 13px;
-
-    color: rgba(255,255,255,0.5);
-
-}
-
-
-.placeholder-content h2 {
-
-    margin-top: 20px;
-
-    font-family: Georgia, serif;
-
-    font-size: 60px;
-
-    font-weight: 400;
-
+@keyframes nebulaSweep {
+    0% { opacity: 0; transform: translateX(-18%) scale(0.98); }
+    24% { opacity: 0.94; }
+    72% { opacity: 0.62; }
+    100% { opacity: 0; transform: translateX(18%) scale(1.02); }
 }
 
 
@@ -814,7 +737,7 @@ body {
 
 }
 /* =====================================
-   SLIDE 2 — WHERE IT ALL STARTED
+   SLIDE 2 â€” WHERE IT ALL STARTED
 ===================================== */
 
 .story-slide {
@@ -822,6 +745,7 @@ body {
     width: min(1250px, 90%);
 
     height: 82vh;
+    height: min(82vh, calc(100dvh - 7rem));
 
     display: grid;
 
@@ -848,29 +772,30 @@ body {
 
     padding-right: 20px;
 
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(240, 180, 200, 0.45) transparent;
 
     animation: storyReveal 1.2s ease forwards;
 
 }
 
 
-.story-content::-webkit-scrollbar {
-
-    display: none;
-
+.story-content::-webkit-scrollbar { width: 6px; }
+.story-content::-webkit-scrollbar-thumb {
+    background: rgba(240, 180, 200, 0.4);
+    border-radius: 999px;
 }
 
 
 .section-label {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 11px;
 
     letter-spacing: 5px;
 
-    color: rgba(255,255,255,0.5);
+    color: var(--color-muted);
 
     margin-bottom: 15px;
 
@@ -896,7 +821,7 @@ body {
 
     display: block;
 
-    color: #e8a7bd;
+    color: var(--color-primary);
 
     font-style: italic;
 
@@ -922,13 +847,13 @@ body {
 
 .story-number {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 11px;
 
     letter-spacing: 2px;
 
-    color: #e7a5bc;
+    color: var(--color-primary);
 
     padding-top: 5px;
 
@@ -948,31 +873,31 @@ body {
 
 .story-block p {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 14px;
 
     line-height: 1.8;
 
-    color: rgba(255,255,255,0.68);
+    color: var(--color-muted);
 
     margin-bottom: 12px;
 
 }
 
 
-.italic-line {
+.story-block .italic-line {
 
-    color: #e6a8bd !important;
+    color: var(--color-primary);
 
     font-style: italic;
 
 }
 
 
-.memory-line {
+.story-block .memory-line {
 
-    color: rgba(255,255,255,0.9) !important;
+    color: var(--color-muted);
 
     font-style: italic;
 
@@ -993,13 +918,13 @@ body {
 
     margin: 15px 0 38px 60px;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 11px;
 
     letter-spacing: 3px;
 
-    color: rgba(255,255,255,0.55);
+    color: var(--color-muted);
 
 }
 
@@ -1025,7 +950,7 @@ body {
 
     padding-left: 18px;
 
-    border-left: 1px solid #d98ca9;
+    border-left: 1px solid var(--color-primary);
 
     font-size: 21px;
 
@@ -1033,7 +958,7 @@ body {
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.9);
+    color: var(--color-muted);
 
 }
 
@@ -1050,7 +975,7 @@ body {
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.85);
+    color: var(--color-muted);
 
     margin: 10px 0 50px 60px;
 
@@ -1116,13 +1041,13 @@ body {
 
     left: 5px;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 10px;
 
     letter-spacing: 1px;
 
-    color: rgba(255,255,255,0.5);
+    color: var(--color-muted);
 
 }
 
@@ -1169,13 +1094,13 @@ body {
 
     right: 5px;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 10px;
 
     letter-spacing: 2px;
 
-    color: rgba(255,255,255,0.5);
+    color: var(--color-muted);
 
 }
 
@@ -1216,6 +1141,7 @@ body {
         width: 90%;
 
         height: 78vh;
+        height: min(78vh, calc(100dvh - 7rem));
 
         grid-template-columns: 1fr;
 
@@ -1256,7 +1182,7 @@ body {
 }
 
 /* =====================================
-   SLIDE 3 — THE THINGS I ADMIRE
+   SLIDE 3 â€” THE THINGS I ADMIRE
 ===================================== */
 
 .admire-slide {
@@ -1264,6 +1190,7 @@ body {
     width: min(1250px, 90%);
 
     height: 82vh;
+    height: min(82vh, calc(100dvh - 7rem));
 
     display: grid;
 
@@ -1288,17 +1215,18 @@ body {
 
     padding-right: 25px;
 
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(240, 180, 200, 0.45) transparent;
 
     animation: admireReveal 1.2s ease forwards;
 
 }
 
 
-.admire-content::-webkit-scrollbar {
-
-    display: none;
-
+.admire-content::-webkit-scrollbar { width: 6px; }
+.admire-content::-webkit-scrollbar-thumb {
+    background: rgba(240, 180, 200, 0.4);
+    border-radius: 999px;
 }
 
 
@@ -1321,7 +1249,7 @@ body {
 
     display: block;
 
-    color: #e6a4bb;
+    color: var(--color-primary);
 
     font-style: italic;
 
@@ -1330,13 +1258,13 @@ body {
 
 .admire-intro {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 14px;
 
     line-height: 1.7;
 
-    color: rgba(255,255,255,0.55);
+    color: var(--color-muted);
 
     margin-bottom: 55px;
 
@@ -1366,13 +1294,13 @@ body {
 
 .admire-number {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 11px;
 
     letter-spacing: 2px;
 
-    color: #e5a2b9;
+    color: var(--color-primary);
 
     padding-top: 5px;
 
@@ -1394,33 +1322,33 @@ body {
 
 .admire-card p {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 14px;
 
     line-height: 1.85;
 
-    color: rgba(255,255,255,0.67);
+    color: var(--color-muted);
 
     margin-bottom: 15px;
 
 }
 
 
-.highlight-text {
+.admire-card p.highlight-text {
 
-    color: rgba(255,255,255,0.9) !important;
+    color: var(--color-muted);
 
     font-style: italic;
 
 }
 
 
-.final-highlight {
+.admire-card p.highlight-text.final-highlight {
 
-    font-size: 16px !important;
+    font-size: 16px;
 
-    color: #e9a8bf !important;
+    color: var(--color-primary);
 
 }
 
@@ -1438,13 +1366,13 @@ body {
 
 .admire-ending > p:first-child {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 11px;
 
     letter-spacing: 5px;
 
-    color: rgba(255,255,255,0.45);
+    color: var(--color-muted);
 
     margin-bottom: 20px;
 
@@ -1466,7 +1394,7 @@ body {
 
 .admire-ending h2 span {
 
-    color: #e4a1b9;
+    color: var(--color-primary);
 
     font-style: italic;
 
@@ -1475,7 +1403,7 @@ body {
 
 .admire-ending > p {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     max-width: 600px;
 
@@ -1483,7 +1411,7 @@ body {
 
     line-height: 1.8;
 
-    color: rgba(255,255,255,0.68);
+    color: var(--color-muted);
 
 }
 
@@ -1492,9 +1420,9 @@ body {
 
     margin-top: 25px;
 
-    color: rgba(255,255,255,0.9);
+    color: var(--color-muted);
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-style: italic;
 
@@ -1564,7 +1492,7 @@ body {
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.5);
+    color: var(--color-muted);
 
 }
 
@@ -1577,13 +1505,13 @@ body {
 
     right: 4px;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 10px;
 
     letter-spacing: 2px;
 
-    color: rgba(255,255,255,0.5);
+    color: var(--color-muted);
 
 }
 
@@ -1654,6 +1582,7 @@ body {
         width: 90%;
 
         height: 78vh;
+        height: min(78vh, calc(100dvh - 7rem));
 
         grid-template-columns: 1fr;
 
@@ -1692,7 +1621,7 @@ body {
 }
 
 /* =====================================
-   SLIDE 4 — SOMETHING I WANT YOU TO KNOW
+   SLIDE 4 â€” SOMETHING I WANT YOU TO KNOW
 ===================================== */
 
 .support-slide {
@@ -1700,6 +1629,7 @@ body {
     width: min(1300px, 92%);
 
     height: 82vh;
+    height: min(82vh, calc(100dvh - 7rem));
 
     position: relative;
 
@@ -1728,17 +1658,18 @@ body {
 
     text-align: center;
 
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(240, 180, 200, 0.45) transparent;
 
     animation: supportReveal 1.3s ease forwards;
 
 }
 
 
-.support-content::-webkit-scrollbar {
-
-    display: none;
-
+.support-content::-webkit-scrollbar { width: 6px; }
+.support-content::-webkit-scrollbar-thumb {
+    background: rgba(240, 180, 200, 0.4);
+    border-radius: 999px;
 }
 
 
@@ -1761,7 +1692,7 @@ body {
 
     display: block;
 
-    color: #e8a5bd;
+    color: var(--color-primary);
 
     font-style: italic;
 
@@ -1781,13 +1712,13 @@ body {
 
 .support-opening p {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 15px;
 
     line-height: 1.8;
 
-    color: rgba(255,255,255,0.68);
+    color: var(--color-muted);
 
     margin-bottom: 5px;
 
@@ -1798,13 +1729,13 @@ body {
 
     margin-top: 18px;
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 20px;
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.95);
+    color: var(--color-muted);
 
 }
 
@@ -1824,13 +1755,13 @@ body {
 
 .support-message p {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 14px;
 
     line-height: 1.9;
 
-    color: rgba(255,255,255,0.65);
+    color: var(--color-muted);
 
     margin-bottom: 20px;
 
@@ -1839,13 +1770,13 @@ body {
 
 .support-message .quiet-line {
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 18px;
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.82);
+    color: var(--color-muted);
 
     margin: 30px 0;
 
@@ -1854,13 +1785,13 @@ body {
 
 .support-message .strong-line {
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 21px;
 
     font-style: italic;
 
-    color: #e6a3ba;
+    color: var(--color-primary);
 
 }
 
@@ -1895,7 +1826,7 @@ body {
 
 .heart-row span {
 
-    color: #e5a1b9;
+    color: var(--color-primary);
 
     font-size: 17px;
 
@@ -1927,13 +1858,13 @@ body {
 
 .most-important {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 10px;
 
     letter-spacing: 4px;
 
-    color: rgba(255,255,255,0.45);
+    color: var(--color-muted);
 
     margin-bottom: 25px;
 
@@ -1948,7 +1879,7 @@ body {
 
     font-style: italic;
 
-    color: #f0b1c6;
+    color: var(--color-primary);
 
     margin-bottom: 30px;
 
@@ -1957,11 +1888,11 @@ body {
 
 .final-question {
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 19px;
 
-    color: rgba(255,255,255,0.75);
+    color: var(--color-muted);
 
     margin-bottom: 8px;
 
@@ -1970,13 +1901,13 @@ body {
 
 .turn-around {
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 23px;
 
     line-height: 1.5;
 
-    color: rgba(255,255,255,0.9);
+    color: var(--color-muted);
 
 }
 
@@ -1985,7 +1916,7 @@ body {
 
     display: block;
 
-    color: #f0abc2;
+    color: var(--color-primary);
 
     font-style: italic;
 
@@ -2048,7 +1979,7 @@ body {
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.45);
+    color: var(--color-muted);
 
 }
 
@@ -2061,13 +1992,13 @@ body {
 
     right: 2px;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 9px;
 
     letter-spacing: 2px;
 
-    color: rgba(255,255,255,0.45);
+    color: var(--color-muted);
 
 }
 
@@ -2193,7 +2124,7 @@ body {
 }
 
 /* =====================================
-   SLIDE 5 — BIRTHDAY
+   SLIDE 5 â€” BIRTHDAY
 ===================================== */
 
 .birthday-slide {
@@ -2201,12 +2132,14 @@ body {
     width: min(1250px, 90%);
 
     height: 82vh;
+    height: min(82vh, calc(100dvh - 7rem));
 
     position: relative;
 
     overflow-y: auto;
 
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(240, 180, 200, 0.45) transparent;
 
     padding: 20px 20px 100px;
 
@@ -2215,10 +2148,10 @@ body {
 }
 
 
-.birthday-slide::-webkit-scrollbar {
-
-    display: none;
-
+.birthday-slide::-webkit-scrollbar { width: 6px; }
+.birthday-slide::-webkit-scrollbar-thumb {
+    background: rgba(240, 180, 200, 0.4);
+    border-radius: 999px;
 }
 
 
@@ -2286,7 +2219,7 @@ body {
 
 .birthday-header h2 span {
 
-    color: #efa9c0;
+    color: var(--color-primary);
 
     font-style: italic;
 
@@ -2299,13 +2232,13 @@ body {
 
     margin: auto;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 14px;
 
     line-height: 1.8;
 
-    color: rgba(255,255,255,0.55);
+    color: var(--color-muted);
 
 }
 
@@ -2341,13 +2274,13 @@ body {
 
     top: 5px;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 11px;
 
     letter-spacing: 3px;
 
-    color: #e7a4bb;
+    color: var(--color-primary);
 
 }
 
@@ -2358,22 +2291,22 @@ body {
 
     margin-left: 50px;
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 16px;
 
     line-height: 1.9;
 
-    color: rgba(255,255,255,0.72);
+    color: var(--color-muted);
 
 }
 
 
 .birthday-wish .highlight-wish {
 
-    color: rgba(255,255,255,0.92);
+    color: var(--color-muted);
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-style: italic;
 
@@ -2432,7 +2365,7 @@ body {
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.45);
+    color: var(--color-muted);
 
 }
 
@@ -2529,13 +2462,13 @@ body {
 
 .last-label {
 
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 
     font-size: 10px;
 
     letter-spacing: 5px;
 
-    color: rgba(255,255,255,0.45);
+    color: var(--color-muted);
 
     margin-bottom: 30px;
 
@@ -2544,13 +2477,13 @@ body {
 
 .last-message {
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 20px;
 
     line-height: 1.7;
 
-    color: rgba(255,255,255,0.72);
+    color: var(--color-muted);
 
 }
 
@@ -2559,13 +2492,13 @@ body {
 
     margin-top: 18px;
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 21px;
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.95);
+    color: var(--color-muted);
 
 }
 
@@ -2576,7 +2509,7 @@ body {
 
     font-size: 25px;
 
-    color: #efa9c0;
+    color: var(--color-primary);
 
     animation: heartPulse 2s ease-in-out infinite;
 
@@ -2596,7 +2529,7 @@ body {
 
 .birthday-ending h3 span {
 
-    color: #efa9c0;
+    color: var(--color-primary);
 
     font-style: italic;
 
@@ -2605,13 +2538,13 @@ body {
 
 .keep-being {
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 21px;
 
     font-style: italic;
 
-    color: rgba(255,255,255,0.85);
+    color: var(--color-muted);
 
 }
 
@@ -2620,13 +2553,13 @@ body {
 
     margin-top: 5px;
 
-    font-family: Georgia, serif;
+    font-family: var(--font-heading);
 
     font-size: 18px;
 
     font-style: italic;
 
-    color: #e5a1b9;
+    color: var(--color-primary);
 
 }
 
@@ -2637,7 +2570,7 @@ body {
 
     font-size: 18px;
 
-    color: #efa9c0;
+    color: var(--color-primary);
 
 }
 
@@ -2723,9 +2656,9 @@ body {
 
         margin: 30px auto 0;
 
-        left: auto !important;
+        left: auto;
 
-        right: auto !important;
+        right: auto;
 
         display: block;
 
@@ -2771,7 +2704,7 @@ body {
 
     border: 1px solid rgba(255,255,255,0.25);
 
-    color: rgba(255,255,255,0.85);
+    color: var(--color-muted);
 
     font-size: 20px;
 
@@ -2802,7 +2735,7 @@ body {
 
 .music-button.playing {
 
-    color: #f0aec4;
+    color: var(--color-primary);
 
     border-color: rgba(240,170,195,0.5);
 
@@ -2846,85 +2779,532 @@ body {
 }
 
 /* =====================================
-   FIX CONTINUE BUTTON
+   ACCESSIBILITY AND SMALL SCREENS
 ===================================== */
 
-button.next-btn {
-    display: inline-flex !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    flex-direction: row !important;
-
-    width: fit-content !important;
-    min-width: 145px !important;
-    height: auto !important;
-
-    padding: 13px 22px !important;
-    margin-top: 40px !important;
-
-    box-sizing: border-box !important;
-
-    position: relative !important;
-
-    gap: 18px !important;
-
-    background: transparent !important;
-    color: white !important;
-
-    border: 1px solid rgba(255,255,255,0.35) !important;
-
-    font-family: inherit !important;
-    font-size: 14px !important;
-    line-height: 1 !important;
-    letter-spacing: 1px !important;
-
-    cursor: pointer !important;
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
 }
 
-
-/* Keep BOTH parts inside the button */
-
-button.next-btn span {
-    position: static !important;
-
-    display: inline-block !important;
-
-    width: auto !important;
-    height: auto !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    transform: none !important;
-
-    color: inherit !important;
-    font-size: inherit !important;
-    line-height: 1 !important;
+button:disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+    transform: none;
 }
 
-
-/* Arrow */
-
-button.next-btn .arrow {
-    position: static !important;
-
-    display: inline-block !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    font-size: 17px !important;
+.slide-content {
+    max-height: calc(100dvh - 7rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(240, 180, 200, 0.45) transparent;
 }
 
-
-/* Hover */
-
-button.next-btn:hover {
-    background: rgba(255,255,255,0.1) !important;
-
-    border-color: rgba(255,255,255,0.7) !important;
-
-    transform: translateX(5px) !important;
+.slide-content::-webkit-scrollbar { width: 6px; }
+.slide-content::-webkit-scrollbar-thumb {
+    background: rgba(240, 180, 200, 0.4);
+    border-radius: 999px;
 }
+
+@media (max-width: 900px) {
+    .story-slide,
+    .admire-slide {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .story-photos,
+    .admire-photos {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .slide-content {
+        width: min(92%, 560px);
+        max-height: calc(100dvh - 5.5rem);
+        padding: 64px 0 78px;
+        gap: 18px;
+    }
+
+    .photo-frame {
+        width: clamp(150px, 43vw, 220px);
+        height: clamp(190px, 48vh, 270px);
+    }
+
+    .story-slide,
+    .admire-slide,
+    .support-slide {
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .story-slide,
+    .admire-slide {
+        display: block;
+    }
+
+    .story-content,
+    .admire-content {
+        height: auto;
+        overflow: visible;
+        padding-right: 0;
+    }
+
+    .story-photos,
+    .admire-photos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        height: auto;
+        padding: 24px 4px 36px;
+    }
+
+    .memory-photo,
+    .admire-photo {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: clamp(150px, 42vw, 230px);
+        transform: rotate(-3deg);
+    }
+
+    .memory-photo.photo-two,
+    .admire-photo-two {
+        transform: rotate(3deg);
+    }
+
+    .support-slide {
+        display: block;
+    }
+
+    .support-photo-one {
+        position: relative;
+        inset: auto;
+        display: block;
+        width: min(180px, 42vw);
+        height: 210px;
+        margin: 24px auto 34px;
+        transform: rotate(-3deg);
+    }
+
+    .support-photo-two,
+    .support-photo-three {
+        display: none;
+    }
+
+    .support-content {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        padding: 0 5px 36px;
+    }
+
+    .navigation {
+        right: 16px;
+        bottom: max(14px, env(safe-area-inset-bottom));
+        gap: 8px;
+    }
+
+    .nav-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .slide-number {
+        margin-right: 4px;
+        font-size: 11px;
+    }
+
+    .music-button {
+        top: max(14px, env(safe-area-inset-top));
+        right: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .slide {
+        transform: none;
+    }
+}
+
+/* Midnight Keepsake visual system */
+.small-heading,
+.section-label,
+.photo-caption,
+.story-number,
+.admire-number,
+.wish-number,
+.last-label {
+    font-family: var(--font-body);
+}
+
+.section-label {
+    color: var(--color-secondary);
+    letter-spacing: 0.28em;
+}
+
+.slide-content {
+    width: min(1180px, calc(100% - 48px));
+    gap: clamp(36px, 6vw, 86px);
+    padding: clamp(26px, 4vw, 62px);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.special-text {
+    font-size: clamp(52px, 7vw, 92px);
+    line-height: 0.96;
+    letter-spacing: -0.045em;
+}
+
+.special-text span,
+.intro-text h2,
+.story-title span,
+.admire-title span,
+.support-title span,
+.birthday-header h2 span,
+.birthday-ending h3 span {
+    color: var(--color-primary);
+}
+
+.special-text span,
+.intro-text h2,
+.ending-italic,
+.last-line,
+.support-final h3,
+.birthday-ending h3 span {
+    font-family: var(--font-script);
+    font-weight: 600;
+}
+
+.intro-text h2 {
+    font-size: clamp(40px, 5vw, 64px);
+    letter-spacing: 0;
+}
+
+.special-text span {
+    font-size: 1.08em;
+    letter-spacing: 0;
+}
+
+.ending-italic,
+.last-line {
+    font-size: clamp(25px, 3vw, 36px);
+    line-height: 1.3;
+}
+
+.support-final h3 {
+    font-size: clamp(34px, 4vw, 54px);
+    line-height: 1.16;
+}
+
+.photo-caption,
+.memory-photo span,
+.admire-photo p,
+.support-photo p,
+.wish-photo span {
+    font-family: var(--font-script);
+    font-size: 17px;
+    color: var(--color-secondary);
+}
+
+.story-block blockquote {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 25px;
+}
+
+.intro-message,
+.story-block p,
+.admire-card p,
+.support-message p,
+.birthday-wish > p {
+    color: var(--color-muted);
+    line-height: 1.85;
+    font-weight: 500;
+}
+
+.story-block p,
+.admire-card p,
+.support-message p {
+    font-size: 15px;
+}
+
+.photo-frame,
+.memory-photo,
+.admire-photo,
+.support-photo,
+.wish-photo {
+    border: 1px solid rgba(166, 91, 118, 0.22);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.44);
+    box-shadow: 0 16px 38px rgba(97, 62, 77, 0.16);
+}
+
+.photo-frame img,
+.memory-photo img,
+.admire-photo img,
+.support-photo img,
+.wish-photo img {
+    border-radius: 8px;
+}
+
+.story-slide,
+.admire-slide,
+.support-slide,
+.birthday-slide {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.story-slide,
+.admire-slide,
+.support-slide {
+    padding: clamp(18px, 3vw, 34px);
+}
+
+.story-block,
+.admire-card {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    transition: transform 260ms ease;
+}
+
+.story-block {
+    gap: 16px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.admire-card {
+    padding: 20px 18px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(138, 114, 95, 0.16);
+}
+
+.story-number,
+.admire-number {
+    color: var(--color-secondary);
+}
+
+.story-ending,
+.ending-italic,
+.last-line {
+    color: var(--color-primary);
+}
+
+.next-btn {
+    border-color: rgba(232, 173, 191, 0.58);
+    border-radius: 999px;
+    background: rgba(232, 173, 191, 0.1);
+    color: var(--color-text);
+    padding: 15px 24px;
+    transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease;
+}
+
+.next-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(232, 173, 191, 0.2);
+    border-color: var(--color-primary);
+}
+
+.navigation {
+    right: clamp(18px, 4vw, 48px);
+    bottom: max(24px, env(safe-area-inset-bottom));
+    gap: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.slide-number {
+    color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.nav-arrow,
+.music-button {
+    border-color: rgba(138, 114, 95, 0.24);
+    background: rgba(255, 255, 255, 0.62);
+    color: var(--color-text);
+    transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease;
+}
+
+.nav-arrow:not(:disabled):hover,
+.music-button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(232, 173, 191, 0.72);
+    background: rgba(232, 173, 191, 0.14);
+}
+
+.music-button {
+    border-radius: 50%;
+    background-color: rgba(255, 250, 248, 0.84);
+}
+
+.birthday-slide {
+    width: min(1120px, calc(100% - 48px));
+    padding: clamp(28px, 5vw, 58px) clamp(22px, 5vw, 52px) 78px;
+}
+
+.slide-content,
+.story-slide,
+.admire-slide,
+.support-slide,
+.birthday-slide {
+    scrollbar-width: none;
+}
+
+*,
+*::before,
+*::after {
+    scrollbar-width: none;
+}
+
+.slide-content::-webkit-scrollbar,
+.story-slide::-webkit-scrollbar,
+.admire-slide::-webkit-scrollbar,
+.support-slide::-webkit-scrollbar,
+.birthday-slide::-webkit-scrollbar,
+.story-content::-webkit-scrollbar,
+.admire-content::-webkit-scrollbar,
+.support-content::-webkit-scrollbar {
+    display: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.highlight-text,
+.admire-card p.highlight-text,
+.support-message .strong-line,
+.support-final h3,
+.turn-around span {
+    color: var(--color-primary);
+}
+
+.birthday-header {
+    margin-bottom: 72px;
+}
+
+.birthday-header h2 {
+    line-height: 1.05;
+}
+
+.birthday-wish {
+    min-height: 250px;
+    margin-bottom: 76px;
+}
+
+.wish-number {
+    font-size: 12px;
+}
+
+.birthday-ending {
+    margin-top: 90px;
+    padding-top: 56px;
+}
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 480ms ease, transform 480ms ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .story-block:hover,
+    .admire-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .photo-frame img,
+    .memory-photo img,
+    .admire-photo img,
+    .support-photo img,
+    .wish-photo img {
+        transition: transform 500ms ease;
+    }
+
+    .photo-frame:hover img,
+    .memory-photo:hover img,
+    .admire-photo:hover img,
+    .support-photo:hover img,
+    .wish-photo:hover img {
+        transform: scale(1.025);
+    }
+}
+
+@media (max-width: 800px) {
+    .slide-content {
+        width: min(92%, 560px);
+        padding: 52px 18px 80px;
+        border-radius: 0;
+    }
+
+    .story-slide,
+    .admire-slide,
+    .support-slide,
+    .birthday-slide {
+        width: 92%;
+        padding: 20px 16px 32px;
+        border-radius: 0;
+    }
+
+    .story-block,
+    .admire-card {
+        grid-template-columns: 30px 1fr;
+        gap: 12px;
+        padding: 16px 12px;
+    }
+
+    .birthday-header {
+        margin-bottom: 56px;
+    }
+
+    .birthday-wish {
+        min-height: 0;
+        margin-bottom: 72px;
+    }
+
+    .birthday-ending {
+        margin-top: 80px;
+        padding-top: 44px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-on-scroll {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+

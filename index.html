@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="description" content="A little birthday story made with love for Manya.">
+    <meta name="theme-color" content="#fff8f5">
 
     <title>A Little Something For Manya</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="assets/cosmic-pink-background.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Dancing+Script:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 
 <body>
 
     <!-- Background Music -->
 
-<audio id="backgroundMusic" loop>
+<audio id="backgroundMusic" loop preload="none">
     <source src="music/birthday.mp3" type="audio/mpeg">
 </audio>
 
@@ -22,16 +30,18 @@
     id="musicButton"
     class="music-button"
     onclick="toggleMusic()"
-    aria-label="Toggle background music"
+    type="button"
+    aria-label="Play background music"
+    aria-pressed="false"
 >
     ♪
 </button>
 
     <!-- Floating Hearts -->
-    <div id="hearts-container"></div>
+    <div id="hearts-container" aria-hidden="true"></div>
 
-    <!-- Particle Transition -->
-    <div id="particle-transition"></div>
+    <!-- Soft nebula sweep between slides -->
+    <div id="slide-transition" aria-hidden="true"></div>
 
 
     <!-- =========================
@@ -41,7 +51,7 @@
     <main id="website">
 
         <!-- SLIDE 1 -->
-        <section class="slide active" id="slide1">
+        <section class="slide active" id="slide1" role="group" aria-roledescription="slide" aria-label="1 of 5: Welcome" aria-hidden="false">
 
             <div class="slide-content">
 
@@ -85,7 +95,7 @@
 
                         <img
                             src="photos/manya1.jpg"
-                            alt="Manya"
+                            alt="Photo of Manya"
                         >
 
                     </div>
@@ -101,12 +111,11 @@
         </section>
 
 
-        <!-- SLIDE 2 PLACEHOLDER -->
    <!-- =========================
      SLIDE 2
 ========================== -->
 
-<section class="slide" id="slide2">
+<section class="slide" id="slide2" role="group" aria-roledescription="slide" aria-label="2 of 5: Where it all started" aria-hidden="true">
 
     <div class="story-slide">
 
@@ -255,7 +264,7 @@
 
                 <img
                     src="photos/manya2.jpg"
-                    alt="Manya memory"
+                    alt="Photo of Manya"
                 >
 
                 <span>
@@ -273,7 +282,7 @@
 
                 <img
                     src="photos/manya3.jpg"
-                    alt="Manya memory"
+                    alt="Photo of Manya"
                 >
 
                 <span>
@@ -292,7 +301,7 @@
      SLIDE 3
 ========================== -->
 
-<section class="slide" id="slide3">
+<section class="slide" id="slide3" role="group" aria-roledescription="slide" aria-label="3 of 5: The things I admire" aria-hidden="true">
 
     <div class="admire-slide">
 
@@ -576,9 +585,34 @@
             </div>
 
 
+            <!-- 07 -->
+            <div class="admire-card">
+
+                <div class="admire-number">
+                    07
+                </div>
+
+                <div>
+
+                    <h3>
+                        Your support
+                    </h3>
+
+                    <p>
+                        Thank you for always supporting me and
+                        helping me whenever I need you. You listen
+                        to me, make things feel a little easier, and
+                        I'm truly grateful to have you in my life.
+                        Thank you so much Manya, for being my unpaid therapist.
+                    </p>
+
+                </div>
+
+            </div>
+
+
             <!-- Ending -->
             <div class="admire-ending">
-
                 <p>
                     AND THAT'S THE THING...
                 </p>
@@ -617,7 +651,7 @@
 
                 <img
                     src="photos/manya4.jpg"
-                    alt="Manya"
+                    alt="Photo of Manya"
                 >
 
                 <p>
@@ -635,7 +669,7 @@
 
                 <img
                     src="photos/manya5.jpg"
-                    alt="Manya"
+                    alt="Photo of Manya"
                 >
 
                 <p>
@@ -654,7 +688,7 @@
      SLIDE 4
 ========================== -->
 
-<section class="slide" id="slide4">
+<section class="slide" id="slide4" role="group" aria-roledescription="slide" aria-label="4 of 5: You can count on me" aria-hidden="true">
 
     <div class="support-slide">
 
@@ -667,7 +701,7 @@
 
             <img
                 src="photos/manya6.jpg"
-                alt="Manya"
+                alt="Photo of Manya"
             >
 
             <p>
@@ -740,7 +774,7 @@
                 </p>
 
                 <p class="quiet-line">
-                    You don't have to be okay all the time, Nor you have to pretend to be strong. You can be vulnerable, and you can be yourself. 
+                    You don't have to be okay all the time, nor do you have to pretend to be strong. You can be vulnerable and be yourself.
                 </p>
 
             </div>
@@ -762,7 +796,7 @@
                 </p>
 
                 <h3>
-                  I always Got Your Back, No matter what.
+                  I always have your back, no matter what.
                 </h3>
 
                 <p class="final-question">
@@ -788,7 +822,7 @@
 
             <img
                 src="photos/manya7.jpg"
-                alt="Manya"
+                alt="Photo of Manya"
             >
 
             <p>
@@ -806,7 +840,7 @@
 
             <img
                 src="photos/manya8.jpg"
-                alt="Manya"
+                alt="Photo of Manya"
             >
 
             <p>
@@ -823,7 +857,7 @@
      SLIDE 5 — BIRTHDAY
 ========================== -->
 
-<section class="slide" id="slide5">
+<section class="slide" id="slide5" role="group" aria-roledescription="slide" aria-label="5 of 5: Happy Birthday" aria-hidden="true">
 
     <div class="birthday-slide">
 
@@ -857,9 +891,7 @@
 
         <div class="birthday-wish wish-one">
 
-            <div class="wish-number">
-                
-            </div>
+            <div class="wish-number" aria-hidden="true">01</div>
 
             <p>
                 I hope this year brings you countless reasons
@@ -871,7 +903,7 @@
 
                 <img
                     src="photos/manya9.jpg"
-                    alt="Manya"
+                    alt="Photo of Manya"
                 >
 
                 <span>
@@ -889,9 +921,7 @@
 
         <div class="birthday-wish wish-two">
 
-            <div class="wish-number">
-                
-            </div>
+            <div class="wish-number" aria-hidden="true">02</div>
 
             <p>
                 I hope you keep finding time for the things
@@ -904,7 +934,7 @@
 
                 <img
                     src="photos/manya10.jpg"
-                    alt="Manya"
+                    alt="Photo of Manya"
                 >
 
                 <span>
@@ -922,9 +952,7 @@
 
         <div class="birthday-wish wish-three">
 
-            <div class="wish-number">
-                
-            </div>
+            <div class="wish-number" aria-hidden="true">03</div>
 
             <p>
                 You have a way of making the people around
@@ -937,7 +965,7 @@
 
                 <img
                     src="photos/manya11.jpg"
-                    alt="Manya"
+                    alt="Photo of Manya"
                 >
 
                 <span>
@@ -955,9 +983,7 @@
 
         <div class="birthday-wish wish-four">
 
-            <div class="wish-number">
-                
-            </div>
+            <div class="wish-number" aria-hidden="true">04</div>
 
             <p>
                 Through all the random conversations,
@@ -969,7 +995,7 @@
 
                 <img
                     src="photos/manya12.jpg"
-                    alt="Manya"
+                    alt="Photo of Manya"
                 >
 
                 <span>
@@ -987,9 +1013,7 @@
 
         <div class="birthday-wish wish-five">
 
-            <div class="wish-number">
-                
-            </div>
+            <div class="wish-number" aria-hidden="true">05</div>
 
             <p>
                 I hope you never feel like you have to change
@@ -1004,7 +1028,7 @@
 
                 <img
                     src="photos/manya13.jpg"
-                    alt="Manya"
+                    alt="Photo of Manya"
                 >
 
                 <span>
@@ -1020,7 +1044,7 @@
              ONE LAST THING
         ====================== -->
 
-        <div class="birthday-ending">
+        <footer class="birthday-ending">
 
             <p class="last-label">
                 ONE LAST THING
@@ -1057,7 +1081,7 @@
                 ♥
             </div>
 
-        </div>
+        </footer>
 
     </div>
 
@@ -1069,15 +1093,15 @@
     <!-- Navigation -->
     <div class="navigation">
 
-        <span class="slide-number">
+        <span class="slide-number" aria-live="polite" aria-atomic="true">
             01 / 05
         </span>
 
-        <button class="nav-arrow" onclick="goToSlide(currentSlide - 1)">
+        <button class="nav-arrow nav-arrow--previous" type="button" onclick="goToSlide(currentSlide - 1)" aria-label="Previous slide" disabled>
            ←
        </button>
 
-        <button class="nav-arrow" onclick="startMusic(); goToSlide(currentSlide + 1)">
+        <button class="nav-arrow nav-arrow--next" type="button" onclick="startMusic(); goToSlide(currentSlide + 1)" aria-label="Next slide">
            →
         </button>
 
